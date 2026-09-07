@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Milan Men's Fashion | milanworld.online</title>
+  <meta name="description" content="Milan Men's Fashion - Heavyweight hoodies, oversized tees, and luxury streetwear." />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              950: '#070707',
+              900: '#0E0E0E',
+              850: '#141414',
+              800: '#1C1C1C',
+              700: '#282828',
+              600: '#3E3E3E',
+              gold: '#D4AF37',
+              bronze: '#C5A880',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Syne', 'Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- React 18 & Babel Standalone -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <style>
+    body {
+      background-color: #080808;
+      color: #EDEDED;
+    }
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FFF0C9 0%, #D4AF37 50%, #997A15 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: 200%;
+      animation: marquee 25s linear infinite;
+    }
+  </style>
+</head>
+<body class="bg-brand-950 text-white font-sans antialiased selection:bg-brand-gold selection:text-black">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useMemo, useEffect } = React;
+
+    const PRODUCTS = [
+      {
+        id: 'milan-hoodie-01',
+        name: 'Vault Heavyweight Boxy Hoodie',
+        tagline: 'Signature 420 GSM French Terry with double-layered hood',
+        category: 'hoodies',
+        price: 2499,
+        originalPrice: 4499,
+        discountPercentage: 44,
+        images: [
+          'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=1000&auto=format&fit=crop',
+          'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?q=80&w=1000&auto=format&fit=crop',
+        ],
+        sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+        rating: 4.9,
+        stockLeft: 4,
+        gsm: '420 GSM Ultra Heavyweight',
+        isLimitedEdition: true,
+      },
+      {
+        id: 'milan-tee-01',
+        name: 'Neo-Tokyo Acid Wash Oversized Tee',
+        tagline: 'Vintage washed 260 GSM combed cotton with high-density print',
+        category: 'tees',
+        price: 1299,
+        originalPrice: 2299,
+        discountPercentage: 43,
+        images: [
+          'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=1000&auto=format&fit=crop',
+          'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1000&auto=format&fit=crop',
+        ],
+        sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+        rating: 4.8,
+        stockLeft: 7,
+        gsm: '260 GSM Heavy Jersey',
+      },
+      {
+        id: 'milan-cargo-01',
+        name: 'Tactical Modular Parachute Cargos',
+        tagline: 'High-density ripstop with 8 ergonomic functional pockets',
+        category: 'bottomwear',
+        price: 2799,
+        originalPrice: 4999,
+        discountPercentage: 44,
+        images: [
+          'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=1000&auto=format&fit=crop',
+          'https://images.unsplash.com/photo-1517445312882-bc9910d016b7?q=80&w=1000&auto=format&fit=crop',
+        ],
+        sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+        rating: 4.9,
+        stockLeft: 3,
+        gsm: '280 GSM Matte Ripstop',
+        isLimitedEdition: true,
+      },
+      {
+        id: 'milan-jacket-01',
+        name: 'Milan Signature Wool-Blend Varsity Jacket',
+        tagline: 'Heavy melton wool body with vegan leather sleeves & chenille patches',
+        category: 'jackets',
+        price: 3899,
+        originalPrice: 6999,
+        discountPercentage: 44,
+        images: [
+          'https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=1000&auto=format&fit=crop',
+          'https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1000&auto=format&fit=crop',
+        ],
+        sizes: ['M', 'L', 'XL', 'XXL'],
+        rating: 5.0,
+        stockLeft: 2,
+        gsm: '550 GSM Melton Wool',
+        isLimitedEdition: true,
+      },
+      {
+        id: 'milan-hoodie-02',
+        name: 'Shadow Realm Zip-Up Heavyweight Hoodie',
+        tagline: 'Custom chunky two-way metal zipper with oversized hood',
+        category: 'hoodies',
+        price: 2699,
+        originalPrice: 4799,
+        discountPercentage: 44,
+        images: [
+          'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?q=80&w=1000&auto=format&fit=crop',
+          'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=1000&auto=format&fit=crop',
+        ],
+        sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+        rating: 4.8,
+        stockLeft: 5,
+        gsm: '400 GSM Combed Terry',
+      },
+      {
+        id: 'milan-acc-01',
+        name: 'Milan Signature Metal Plaque Cap',
+        tagline: 'Structured 6-panel silhouette with engraved matte gold crest',
+        category: 'accessories',
+        price: 999,
+        originalPrice: 1799,
+        discountPercentage: 44,
+        images: [
+          'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=1000&auto=format&fit=crop',
+          'https://images.unsplash.com/photo-1534215754734-18e55d13e346?q=80&w=1000&auto=format&fit=crop',
+        ],
+        sizes: ['M'],
+        rating: 4.9,
+        stockLeft: 12,
+        gsm: 'Heavy Cotton Twill',
+      },
+    ];
+
+    function App() {
+      const [category, setCategory] = useState('all');
+      const [cart, setCart] = useState([]);
+      const [wishlist, setWishlist] = useState([]);
+      const [isCartOpen, setIsCartOpen] = useState(false);
+      const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+      const [selectedProduct, setSelectedProduct] = useState(null);
+      const [searchQuery, setSearchQuery] = useState('');
+      const [coupon, setCoupon] = useState('');
+      const [discountPercent, setDiscountPercent] = useState(0);
+      const [couponMsg, setCouponMsg] = useState('');
+      const [orderSuccess, setOrderSuccess] = useState(null);
+
+      // Address
+      const [address, setAddress] = useState({
+        name: '',
+        phone: '',
+        line: '',
+        city: 'Ghaziabad',
+        pincode: '',
+      });
+
+      const filtered = useMemo(() => {
+        return PRODUCTS.filter((p) => {
+          if (category !== 'all' && p.category !== category) return false;
+          if (searchQuery.trim() && !p.name.toLowerCase().includes(searchQuery.toLowerCase())) return false;
+          return true;
+        });
+      }, [category, searchQuery]);
+
+      const cartSubtotal = useMemo(() => {
+        return cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
+      }, [cart]);
+
+      const discountAmount = Math.round((cartSubtotal * discountPercent) / 100);
+      const isFreeShipping = cartSubtotal >= 1499;
+      const shippingFee = cartSubtotal === 0 ? 0 : isFreeShipping ? 0 : 99;
+      const grandTotal = Math.max(0, cartSubtotal - discountAmount + shippingFee);
+
+      const addToCart = (product, size = 'M', qty = 1) => {
+        setCart((prev) => {
+          const idx = prev.findIndex((i) => i.product.id === product.id && i.size === size);
+          if (idx > -1) {
+            const next = [...prev];
+            next[idx].quantity += qty;
+            return next;
+          }
+          return [...prev, { product, size, quantity: qty }];
+        });
+        setIsCartOpen(true);
+      };
+
+      const updateQty = (id, size, delta) => {
+        setCart((prev) =>
+          prev
+            .map((item) => {
+              if (item.product.id === id && item.size === size) {
+                const n = item.quantity + delta;
+                return n > 0 ? { ...item, quantity: n } : null;
+              }
+              return item;
+            })
+            .filter(Boolean)
+        );
+      };
+
+      const applyCoupon = () => {
+        if (coupon.trim().toUpperCase() === 'MILAN10') {
+          setDiscountPercent(10);
+          setCouponMsg('10% Instant Discount applied!');
+          confetti({ particleCount: 60, spread: 60, origin: { y: 0.7 } });
+        } else {
+          setCouponMsg('Invalid coupon. Try "MILAN10"');
+        }
+      };
+
+      const placeOrder = (e) => {
+        e.preventDefault();
+        const orderId = 'MMF-' + Math.floor(100000 + Math.random() * 900000);
+        setOrderSuccess({
+          id: orderId,
+          total: grandTotal,
+          address: { ...address },
+          items: [...cart],
+        });
+        setCart([]);
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+      };
+
+      const whatsappText = orderSuccess
+        ? `*Order Placed on Milan Men's Fashion (milanworld.online)*\nOrder ID: ${orderSuccess.id}\nCustomer: ${orderSuccess.address.name} (${orderSuccess.address.phone})\nTotal: ₹${orderSuccess.total}\nDispatch to: ${orderSuccess.address.line}, ${orderSuccess.address.city} - ${orderSuccess.address.pincode}`
+        : '';
+
+      return (
+        <div className="min-h-screen flex flex-col bg-brand-950 text-zinc-100">
+          {/* Top Banner */}
+          <div className="bg-brand-900 border-b border-brand-800 text-xs py-2 px-4 text-center tracking-wide font-medium flex items-center justify-center gap-2">
+            <span className="text-brand-gold font-bold">⚡ VAULT DROP LIVE:</span>
+            <span>Free Express Delivery Above ₹1,499 | Code:</span>
+            <span className="px-1.5 py-0.5 rounded bg-brand-gold/15 text-brand-gold border border-brand-gold/30 font-mono font-bold">
+              MILAN10
+            </span>
+          </div>
+
+          {/* Header */}
+          <header className="sticky top-0 z-40 bg-brand-950/90 backdrop-blur-md border-b border-brand-850 px-4 sm:px-8 py-3 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <a href="#" className="flex flex-col">
+                <span className="text-2xl font-black tracking-tighter uppercase font-display text-white">
+                  MILAN <span className="font-light text-zinc-400">MEN</span>
+                </span>
+                <span className="text-[9px] uppercase tracking-[0.25em] text-brand-gold font-mono font-semibold">
+                  milanworld.online
+                </span>
+              </a>
+            </div>
+
+            <div className="hidden md:flex items-center gap-2">
+              {['all', 'hoodies', 'tees', 'bottomwear', 'jackets', 'accessories'].map((c) => (
+                <button
+                  key={c}
+                  onClick={() => setCategory(c)}
+                  className={`px-3 py-1.5 text-xs font-semibold rounded-full capitalize transition-all ${
+                    category === c
+                      ? 'bg-white text-black font-bold'
+                      : 'text-zinc-300 hover:text-white hover:bg-brand-900'
+                  }`}
+                >
+                  {c === 'all' ? 'All Vault' : c}
+                </button>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setIsCartOpen(true)}
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold hover:bg-brand-bronze text-brand-950 font-bold text-xs uppercase shadow-lg transition-all"
+              >
+                <span>Bag ({cart.reduce((a, b) => a + b.quantity, 0)})</span>
+              </button>
+            </div>
+          </header>
+
+          {/* Hero Section */}
+          <section className="relative overflow-hidden py-14 sm:py-20 px-4 sm:px-8 max-w-7xl mx-auto w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-7 space-y-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-900 border border-brand-800 text-xs font-semibold text-brand-gold">
+                  <span>★ OFFICIAL STREETWEAR VAULT</span>
+                </div>
+                <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight font-display text-white leading-tight">
+                  THE WINTER & <br />
+                  <span className="gold-gradient-text">STREETWEAR</span> <br />
+                  VAULT.
+                </h1>
+                <p className="text-zinc-400 max-w-xl text-sm sm:text-base leading-relaxed">
+                  Heavyweight hoodies, relaxed fits, and crafted essentials designed for everyday confidence.
+                  Custom 420 GSM French Terry milled and shipped directly from Rajnagar Extension, Ghaziabad.
+                </p>
+                <div className="flex gap-4 pt-2">
+                  <a
+                    href="#catalog"
+                    className="px-7 py-3.5 rounded-xl bg-white text-black font-extrabold text-xs uppercase tracking-wider hover:bg-brand-gold transition-colors"
+                  >
+                    Shop New Drop
+                  </a>
+                  <a
+                    href="https://wa.me/917895499065"
+                    target="_blank"
+                    className="px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-colors"
+                  >
+                    WhatsApp Support
+                  </a>
+                </div>
+              </div>
+
+              <div className="lg:col-span-5">
+                <div className="rounded-3xl overflow-hidden border border-brand-800 bg-brand-900 shadow-2xl relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?q=80&w=1000&auto=format&fit=crop"
+                    alt="Milan Men Streetwear"
+                    className="w-full h-96 object-cover"
+                  />
+                  <div className="p-4 bg-brand-950/90 border-t border-brand-800 flex justify-between items-center">
+                    <div>
+                      <h4 className="text-sm font-bold text-white">Vault Heavyweight Boxy Hoodie</h4>
+                      <p className="text-xs text-brand-gold font-bold">₹2,499 <span className="text-zinc-500 line-through text-[11px]">₹4,499</span></p>
+                    </div>
+                    <button
+                      onClick={() => addToCart(PRODUCTS[0])}
+                      className="px-4 py-2 rounded-xl bg-white text-black font-bold text-xs uppercase hover:bg-brand-gold"
+                    >
+                      Quick Add
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Marquee Trust Ticker */}
+          <div className="bg-brand-900 border-y border-brand-800 py-3 overflow-hidden select-none">
+            <div className="animate-marquee text-xs uppercase font-bold tracking-wider text-zinc-300">
+              <span className="mx-6">★ 100% Combed Compact Cotton</span>
+              <span className="mx-6">★ 7-Day Hassle-Free Exchange</span>
+              <span className="mx-6">★ Dispatched in 24 Hours (Ghaziabad Hub)</span>
+              <span className="mx-6">★ Cash on Delivery Available</span>
+              <span className="mx-6">★ Free Express Delivery Above ₹1,499</span>
+              <span className="mx-6">★ Official: milanworld.online</span>
+              <span className="mx-6">★ 100% Combed Compact Cotton</span>
+              <span className="mx-6">★ 7-Day Hassle-Free Exchange</span>
+              <span className="mx-6">★ Dispatched in 24 Hours (Ghaziabad Hub)</span>
+              <span className="mx-6">★ Cash on Delivery Available</span>
+            </div>
+          </div>
+
+          {/* Product Catalog */}
+          <section id="catalog" className="max-w-7xl mx-auto px-4 sm:px-8 py-16 w-full flex-1">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+              <div>
+                <span className="text-xs font-mono font-bold tracking-widest uppercase text-brand-gold">
+                  Curated Collection
+                </span>
+                <h2 className="text-3xl font-black uppercase tracking-tight text-white font-display">
+                  Live Streetwear Catalog
+                </h2>
+              </div>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Search hoodies, tees, cargos..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="bg-brand-900 border border-brand-800 rounded-xl px-4 py-2 text-xs text-white placeholder-zinc-500 outline-none focus:border-brand-gold"
+                />
+              </div>
+            </div>
+
+            {/* Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filtered.map((item) => (
+                <div
+                  key={item.id}
+                  className="bg-brand-900/60 rounded-2xl overflow-hidden border border-brand-800 hover:border-brand-700 transition-all flex flex-col justify-between"
+                >
+                  <div
+                    onClick={() => setSelectedProduct(item)}
+                    className="aspect-[3/4] overflow-hidden bg-brand-950 cursor-pointer relative"
+                  >
+                    <img src={item.images[0]} alt={item.name} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                    {item.isLimitedEdition && (
+                      <span className="absolute top-3 left-3 px-2.5 py-1 rounded bg-brand-gold text-brand-950 font-black text-[10px] uppercase">
+                        Limited Vault
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="p-4 space-y-3">
+                    <div>
+                      <span className="text-[10px] font-mono uppercase text-brand-gold">{item.gsm}</span>
+                      <h3
+                        onClick={() => setSelectedProduct(item)}
+                        className="text-base font-bold text-white hover:text-brand-gold cursor-pointer transition-colors"
+                      >
+                        {item.name}
+                      </h3>
+                      <p className="text-xs text-zinc-400 line-clamp-1">{item.tagline}</p>
+                    </div>
+
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-lg font-black text-white font-mono">₹{item.price.toLocaleString()}</span>
+                      <span className="text-xs text-zinc-500 line-through">₹{item.originalPrice.toLocaleString()}</span>
+                      <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded">
+                        {item.discountPercentage}% OFF
+                      </span>
+                    </div>
+
+                    <button
+                      onClick={() => addToCart(item)}
+                      className="w-full py-2.5 rounded-xl bg-white hover:bg-brand-gold text-black hover:text-brand-950 font-bold text-xs uppercase tracking-wider transition-colors"
+                    >
+                      Quick Add to Bag
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Cart Drawer */}
+          {isCartOpen && (
+            <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex justify-end">
+              <div className="w-full max-w-md bg-brand-950 border-l border-brand-800 h-full p-6 flex flex-col justify-between overflow-y-auto">
+                <div>
+                  <div className="flex justify-between items-center pb-4 border-b border-brand-800">
+                    <h3 className="text-lg font-bold text-white uppercase font-display">Streetwear Bag ({cart.length})</h3>
+                    <button onClick={() => setIsCartOpen(false)} className="text-zinc-400 hover:text-white text-lg font-bold">✕</button>
+                  </div>
+
+                  {/* Free shipping meter */}
+                  <div className="my-4 p-3 rounded-xl bg-brand-900 border border-brand-800 text-xs text-zinc-300">
+                    {isFreeShipping ? (
+                      <span className="text-emerald-400 font-bold">✓ Free Express Delivery Unlocked!</span>
+                    ) : (
+                      <span>Add <strong className="text-white">₹{Math.max(0, 1499 - cartSubtotal)}</strong> more for Free Delivery!</span>
+                    )}
+                  </div>
+
+                  <div className="space-y-3">
+                    {cart.map((item, idx) => (
+                      <div key={idx} className="flex gap-3 p-3 rounded-xl bg-brand-900/60 border border-brand-800">
+                        <img src={item.product.images[0]} alt="" className="w-16 h-20 object-cover rounded-lg bg-black" />
+                        <div className="flex-1 min-w-0 flex flex-col justify-between">
+                          <div>
+                            <h4 className="text-xs font-bold text-white truncate">{item.product.name}</h4>
+                            <span className="text-[11px] text-zinc-400">Size: {item.size}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <div className="flex items-center gap-2 bg-brand-850 px-2 py-0.5 rounded border border-brand-800">
+                              <button onClick={() => updateQty(item.product.id, item.size, -1)} className="text-zinc-400 hover:text-white">-</button>
+                              <span className="text-xs font-mono font-bold">{item.quantity}</span>
+                              <button onClick={() => updateQty(item.product.id, item.size, 1)} className="text-zinc-400 hover:text-white">+</button>
+                            </div>
+                            <span className="text-xs font-bold font-mono">₹{(item.product.price * item.quantity).toLocaleString()}</span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                    {cart.length === 0 && (
+                      <p className="text-center py-12 text-zinc-400 text-xs">Your bag is empty. Add pieces from the catalog!</p>
+                    )}
+                  </div>
+                </div>
+
+                {cart.length > 0 && (
+                  <div className="pt-4 border-t border-brand-800 space-y-3">
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        placeholder="Coupon: MILAN10"
+                        value={coupon}
+                        onChange={(e) => setCoupon(e.target.value)}
+                        className="flex-1 bg-brand-900 border border-brand-800 rounded-xl px-3 py-2 text-xs text-white uppercase font-mono"
+                      />
+                      <button onClick={applyCoupon} className="px-4 py-2 rounded-xl bg-brand-850 text-brand-gold font-bold text-xs uppercase">
+                        Apply
+                      </button>
+                    </div>
+                    {couponMsg && <p className="text-[11px] text-brand-gold">{couponMsg}</p>}
+
+                    <div className="space-y-1 text-xs text-zinc-400">
+                      <div className="flex justify-between"><span>Subtotal</span><span>₹{cartSubtotal.toLocaleString()}</span></div>
+                      {discountAmount > 0 && (
+                        <div className="flex justify-between text-emerald-400"><span>Discount</span><span>-₹{discountAmount.toLocaleString()}</span></div>
+                      )}
+                      <div className="flex justify-between"><span>Shipping</span><span>{isFreeShipping ? 'FREE' : `₹${shippingFee}`}</span></div>
+                      <div className="flex justify-between text-sm font-bold text-white pt-2 border-t border-brand-800">
+                        <span>Grand Total</span><span className="text-brand-gold font-mono">₹{grandTotal.toLocaleString()}</span>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => {
+                        setIsCartOpen(false);
+                        setIsCheckoutOpen(true);
+                      }}
+                      className="w-full py-3.5 rounded-xl bg-brand-gold text-brand-950 font-bold uppercase tracking-wider text-xs hover:bg-brand-bronze transition-colors shadow-lg"
+                    >
+                      Proceed to Checkout
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Checkout Modal */}
+          {isCheckoutOpen && (
+            <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4">
+              <div className="bg-brand-950 border border-brand-800 w-full max-w-lg rounded-3xl p-6 shadow-2xl relative">
+                <div className="flex justify-between items-center pb-4 border-b border-brand-800">
+                  <h3 className="text-lg font-bold text-white uppercase font-display">
+                    {orderSuccess ? 'Order Placed!' : 'Fast Checkout'}
+                  </h3>
+                  <button onClick={() => { setIsCheckoutOpen(false); setOrderSuccess(null); }} className="text-zinc-400 hover:text-white">✕</button>
+                </div>
+
+                {!orderSuccess ? (
+                  <form onSubmit={placeOrder} className="mt-4 space-y-3">
+                    <div>
+                      <label className="block text-xs font-semibold text-zinc-400 mb-1">Full Name</label>
+                      <input
+                        required
+                        value={address.name}
+                        onChange={(e) => setAddress({ ...address, name: e.target.value })}
+                        placeholder="Milan Sharma"
+                        className="w-full bg-brand-900 border border-brand-800 rounded-xl px-3 py-2 text-xs text-white"
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-xs font-semibold text-zinc-400 mb-1">Phone Number</label>
+                        <input
+                          required
+                          value={address.phone}
+                          onChange={(e) => setAddress({ ...address, phone: e.target.value })}
+                          placeholder="7895499065"
+                          className="w-full bg-brand-900 border border-brand-800 rounded-xl px-3 py-2 text-xs text-white font-mono"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-semibold text-zinc-400 mb-1">Pincode</label>
+                        <input
+                          required
+                          value={address.pincode}
+                          onChange={(e) => setAddress({ ...address, pincode: e.target.value })}
+                          placeholder="201017"
+                          className="w-full bg-brand-900 border border-brand-800 rounded-xl px-3 py-2 text-xs text-white font-mono"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-zinc-400 mb-1">Delivery Address</label>
+                      <input
+                        required
+                        value={address.line}
+                        onChange={(e) => setAddress({ ...address, line: e.target.value })}
+                        placeholder="Rajnagar Extension, Ghaziabad"
+                        className="w-full bg-brand-900 border border-brand-800 rounded-xl px-3 py-2 text-xs text-white"
+                      />
+                    </div>
+                    <div className="p-3 bg-brand-900 rounded-xl border border-brand-800 text-xs flex justify-between">
+                      <span>Grand Total:</span>
+                      <strong className="text-brand-gold font-mono">₹{grandTotal.toLocaleString()} (Cash on Delivery / UPI)</strong>
+                    </div>
+                    <button
+                      type="submit"
+                      className="w-full py-3.5 rounded-xl bg-brand-gold text-brand-950 font-bold uppercase tracking-wider text-xs hover:bg-brand-bronze shadow-lg"
+                    >
+                      Confirm Order
+                    </button>
+                  </form>
+                ) : (
+                  <div className="text-center py-6 space-y-4">
+                    <div className="w-12 h-12 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center mx-auto text-xl font-black">✓</div>
+                    <h4 className="text-xl font-bold text-white font-display">Thank You, {orderSuccess.address.name}!</h4>
+                    <p className="text-xs text-zinc-400 font-mono">Order ID: <strong className="text-brand-gold">{orderSuccess.id}</strong></p>
+                    <a
+                      href={`https://wa.me/917895499065?text=${encodeURIComponent(whatsappText)}`}
+                      target="_blank"
+                      className="block w-full py-3 rounded-xl bg-emerald-600 text-white font-bold text-xs uppercase"
+                    >
+                      Send Order Receipt to WhatsApp (+91 7895499065)
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Product Detail Modal */}
+          {selectedProduct && (
+            <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4">
+              <div className="bg-brand-950 border border-brand-800 w-full max-w-xl rounded-3xl p-6 shadow-2xl relative">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <span className="text-[10px] font-mono text-brand-gold uppercase">{selectedProduct.gsm}</span>
+                    <h3 className="text-xl font-bold text-white font-display">{selectedProduct.name}</h3>
+                  </div>
+                  <button onClick={() => setSelectedProduct(null)} className="text-zinc-400 hover:text-white">✕</button>
+                </div>
+                <img src={selectedProduct.images[0]} alt="" className="w-full h-64 object-cover rounded-2xl my-4" />
+                <p className="text-xs text-zinc-400">{selectedProduct.tagline}</p>
+                <div className="flex items-baseline gap-2 my-3">
+                  <span className="text-xl font-black text-white font-mono">₹{selectedProduct.price.toLocaleString()}</span>
+                  <span className="text-xs text-zinc-500 line-through">₹{selectedProduct.originalPrice.toLocaleString()}</span>
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => { addToCart(selectedProduct); setSelectedProduct(null); }}
+                    className="flex-1 py-3 rounded-xl bg-white text-black font-bold text-xs uppercase hover:bg-brand-gold"
+                  >
+                    Add to Bag
+                  </button>
+                  <a
+                    href={`https://wa.me/917895499065?text=Hi%2C%20I%20want%20to%20order%20${encodeURIComponent(selectedProduct.name)}`}
+                    target="_blank"
+                    className="px-4 py-3 rounded-xl bg-emerald-600 text-white font-bold text-xs uppercase"
+                  >
+                    WhatsApp
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Floating WhatsApp Button */}
+          <a
+            href="https://wa.me/917895499065"
+            target="_blank"
+            className="fixed bottom-6 right-6 z-40 px-4 py-3 rounded-full bg-[#25D366] text-white font-bold text-xs flex items-center gap-2 shadow-2xl hover:scale-105 transition-transform"
+          >
+            <span>💬 Chat with Milan (+91 7895499065)</span>
+          </a>
+
+          {/* Footer */}
+          <footer className="bg-brand-950 border-t border-brand-850 py-12 px-4 sm:px-8 mt-auto text-xs text-zinc-400">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
+              <div>
+                <h4 className="text-base font-bold text-white font-display">MILAN MEN'S FASHION</h4>
+                <p className="text-brand-gold font-mono mt-0.5">milanworld.online</p>
+                <p className="mt-2 text-zinc-400 leading-relaxed">
+                  Heavyweight urban streetwear designed and engineered for everyday luxury.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-bold text-white font-mono uppercase mb-2">Direct Contact</h4>
+                <p>Phone: <a href="tel:+917895499065" className="text-white hover:text-brand-gold font-mono">+91 7895499065</a></p>
+                <p className="mt-1">Email: <a href="mailto:milansharma2610@gmail.com" className="text-white hover:text-brand-gold">milansharma2610@gmail.com</a></p>
+                <p className="mt-1">Hub: Rajnagar Extension, Ghaziabad, UP</p>
+              </div>
+              <div>
+                <h4 className="font-bold text-white font-mono uppercase mb-2">Policies</h4>
+                <p>✓ 100% Combed Compact Cotton</p>
+                <p className="mt-1">✓ 7-Day Easy Exchange Across India</p>
+                <p className="mt-1">✓ Cash on Delivery & Express Dispatch</p>
+              </div>
+            </div>
+            <div className="max-w-7xl mx-auto pt-8 mt-8 border-t border-brand-850 text-center text-zinc-500">
+              © 2026 Milan Men's Fashion (milanworld.online). All Rights Reserved.
+            </div>
+          </footer>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
