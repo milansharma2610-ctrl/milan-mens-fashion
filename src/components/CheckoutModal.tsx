@@ -29,7 +29,6 @@ export const CheckoutModal: React.FC = () => {
 
   const [step, setStep] = useState<'details' | 'payment' | 'success'>('details');
 
-  // Address State
   const [address, setAddress] = useState<ShippingAddress>({
     fullName: '',
     phone: '',
@@ -37,11 +36,11 @@ export const CheckoutModal: React.FC = () => {
     addressLine: '',
     landmark: '',
     city: '',
-    state: 'Uttar Pradesh',
+    state: '',
     pincode: '',
   });
 
-  const [paymentMethod, setPaymentMethod] = useState<'COD' | 'UPI' | 'CARD'>('UPI');
+  const [paymentMethod, setPaymentMethod] = useState<'COD' | 'UPI' | 'CARD'>('CARD');
   const [isProcessing, setIsProcessing] = useState(false);
 
   if (!isCheckoutOpen) return null;
@@ -49,7 +48,7 @@ export const CheckoutModal: React.FC = () => {
   const handleDetailsSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!address.fullName || !address.phone || !address.addressLine || !address.pincode) {
-      alert('Please fill all required shipping fields');
+      alert('Please fill all required address fields.');
       return;
     }
     setStep('payment');
@@ -58,10 +57,10 @@ export const CheckoutModal: React.FC = () => {
   const handlePlaceOrder = () => {
     setIsProcessing(true);
     setTimeout(() => {
-      const generatedOrderId = `MMF-${Math.floor(100000 + Math.random() * 900000)}`;
+      const generatedOrderId = `MW-${Math.floor(100000 + Math.random() * 900000)}`;
       const order: OrderConfirmation = {
         orderId: generatedOrderId,
-        date: new Date().toLocaleDateString('en-IN', {
+        date: new Date().toLocaleDateString('en-US', {
           day: 'numeric',
           month: 'short',
           year: 'numeric',
@@ -80,28 +79,27 @@ export const CheckoutModal: React.FC = () => {
       setStep('success');
       clearCart();
 
-      // Fire victory confetti
       confetti({
-        particleCount: 100,
-        spread: 80,
+        particleCount: 80,
+        spread: 70,
         origin: { y: 0.6 },
       });
-    }, 1200);
+    }, 1000);
   };
 
   const generateWhatsAppMessage = (order: OrderConfirmation) => {
-    const text = `*New Order Placed on Milan Men's Fashion (milanworld.online)*\n\n` +
-      `*Order ID:* ${order.orderId}\n` +
-      `*Customer:* ${order.shippingAddress.fullName}\n` +
-      `*Phone:* ${order.shippingAddress.phone}\n` +
-      `*Delivery Address:* ${order.shippingAddress.addressLine}, ${order.shippingAddress.city}, ${order.shippingAddress.state} - ${order.shippingAddress.pincode}\n\n` +
-      `*Items:* \n` +
+    const text = `*New Order Placed — MILANWORLD Men's Atelier (milanworld.online)*\n\n` +
+      `*Order Identifier:* ${order.orderId}\n` +
+      `*Patron Name:* ${order.shippingAddress.fullName}\n` +
+      `*Contact:* ${order.shippingAddress.phone} | ${order.shippingAddress.email}\n` +
+      `*Destination:* ${order.shippingAddress.addressLine}, ${order.shippingAddress.city}, ${order.shippingAddress.state} - ${order.shippingAddress.pincode}\n\n` +
+      `*Sartorial Selection:* \n` +
       order.items
-        .map((i) => `• ${i.product.name} (Size: ${i.selectedSize}, Qty: ${i.quantity}) - ₹${i.product.price * i.quantity}`)
+        .map((i) => `• ${i.product.name} (Size: ${i.selectedSize}, Qty: ${i.quantity}) - $${i.product.price * i.quantity}`)
         .join('\n') +
-      `\n\n*Payment Method:* ${order.paymentMethod}\n` +
-      `*Grand Total:* ₹${order.grandTotal}\n\n` +
-      `Please confirm dispatch from Rajnagar Extension, Ghaziabad hub.`;
+      `\n\n*Payment Mode:* ${order.paymentMethod}\n` +
+      `*Total Valuation:* $${order.grandTotal}\n\n` +
+      `Dispatched via Milan Atelier Concierge Hub.`;
 
     return `https://wa.me/917895499065?text=${encodeURIComponent(text)}`;
   };
@@ -112,32 +110,32 @@ export const CheckoutModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-      <div className="bg-brand-950 border border-brand-800 w-full max-w-2xl rounded-3xl p-6 sm:p-8 shadow-2xl animate-slide-up relative my-auto max-h-[92vh] overflow-y-auto">
+    <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto font-sans">
+      <div className="bg-brand-black border border-neutral-800 w-full max-w-xl p-6 sm:p-8 shadow-2xl animate-slide-up relative my-auto max-h-[92vh] overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-brand-800 mb-6">
+        <div className="flex items-center justify-between pb-4 border-b border-neutral-800 mb-6">
           <div>
-            <span className="text-[10px] font-mono tracking-widest uppercase text-brand-gold font-semibold">
-              Checkout & Express Fulfillment
+            <span className="text-[9px] uppercase tracking-widest text-brand-gold font-semibold font-mono">
+              Bespoke Concierge Fulfillment
             </span>
-            <h3 className="text-xl font-black text-white uppercase font-display">
-              {step === 'success' ? 'Order Confirmed!' : 'Secure Express Checkout'}
+            <h3 className="text-xl sm:text-2xl font-serif uppercase tracking-wider text-white font-bold">
+              {step === 'success' ? 'Atelier Order Confirmed' : 'Client Checkout'}
             </h3>
           </div>
           <button
             onClick={handleClose}
-            className="p-1.5 text-zinc-400 hover:text-white rounded-lg hover:bg-brand-900"
+            className="p-1 text-neutral-400 hover:text-white"
           >
-            <X className="w-5 h-5" />
+            <X className="w-5 h-5 stroke-[1.2]" />
           </button>
         </div>
 
-        {/* STEP 1: Shipping Details Form */}
+        {/* STEP 1: Shipping Details */}
         {step === 'details' && (
-          <form onSubmit={handleDetailsSubmit} className="space-y-4">
+          <form onSubmit={handleDetailsSubmit} className="space-y-4 text-xs">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5">
+                <label className="block text-[10px] font-semibold text-neutral-300 uppercase tracking-widest mb-1.5">
                   Full Name *
                 </label>
                 <input
@@ -146,55 +144,55 @@ export const CheckoutModal: React.FC = () => {
                   value={address.fullName}
                   onChange={(e) => setAddress({ ...address, fullName: e.target.value })}
                   placeholder="e.g. Milan Sharma"
-                  className="w-full bg-brand-900 border border-brand-800 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-zinc-500 outline-none focus:border-brand-gold"
+                  className="w-full bg-neutral-900 border border-neutral-700 px-3.5 py-2.5 text-white placeholder-neutral-500 outline-none focus:border-brand-gold"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5">
-                  Phone Number (for SMS & WhatsApp Tracking) *
+                <label className="block text-[10px] font-semibold text-neutral-300 uppercase tracking-widest mb-1.5">
+                  Phone Number *
                 </label>
                 <input
                   type="tel"
                   required
                   value={address.phone}
                   onChange={(e) => setAddress({ ...address, phone: e.target.value })}
-                  placeholder="e.g. 7895499065"
-                  className="w-full bg-brand-900 border border-brand-800 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-zinc-500 outline-none focus:border-brand-gold font-mono"
+                  placeholder="7895499065"
+                  className="w-full bg-neutral-900 border border-neutral-700 px-3.5 py-2.5 text-white placeholder-neutral-500 outline-none focus:border-brand-gold font-mono"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5">
-                Email Address (for Digital Invoice)
+              <label className="block text-[10px] font-semibold text-neutral-300 uppercase tracking-widest mb-1.5">
+                Email Address (for Certificate of Authenticity)
               </label>
               <input
                 type="email"
                 value={address.email}
                 onChange={(e) => setAddress({ ...address, email: e.target.value })}
-                placeholder="e.g. milansharma2610@gmail.com"
-                className="w-full bg-brand-900 border border-brand-800 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-zinc-500 outline-none focus:border-brand-gold"
+                placeholder="milansharma2610@gmail.com"
+                className="w-full bg-neutral-900 border border-neutral-700 px-3.5 py-2.5 text-white placeholder-neutral-500 outline-none focus:border-brand-gold"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5">
-                Complete Street Address (Flat / House No / Street) *
+              <label className="block text-[10px] font-semibold text-neutral-300 uppercase tracking-widest mb-1.5">
+                Delivery Address *
               </label>
               <input
                 type="text"
                 required
                 value={address.addressLine}
                 onChange={(e) => setAddress({ ...address, addressLine: e.target.value })}
-                placeholder="e.g. Flat 402, Tower B, Rajnagar Extension"
-                className="w-full bg-brand-900 border border-brand-800 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-zinc-500 outline-none focus:border-brand-gold"
+                placeholder="Street address, Suite / Villa, Rajnagar Extension"
+                className="w-full bg-neutral-900 border border-neutral-700 px-3.5 py-2.5 text-white placeholder-neutral-500 outline-none focus:border-brand-gold"
               />
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5">
+                <label className="block text-[10px] font-semibold text-neutral-300 uppercase tracking-widest mb-1.5">
                   City *
                 </label>
                 <input
@@ -202,13 +200,12 @@ export const CheckoutModal: React.FC = () => {
                   required
                   value={address.city}
                   onChange={(e) => setAddress({ ...address, city: e.target.value })}
-                  placeholder="Ghaziabad"
-                  className="w-full bg-brand-900 border border-brand-800 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-zinc-500 outline-none focus:border-brand-gold"
+                  placeholder="Ghaziabad / Delhi"
+                  className="w-full bg-neutral-900 border border-neutral-700 px-3.5 py-2.5 text-white placeholder-neutral-500 outline-none focus:border-brand-gold"
                 />
               </div>
-
               <div>
-                <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5">
+                <label className="block text-[10px] font-semibold text-neutral-300 uppercase tracking-widest mb-1.5">
                   State
                 </label>
                 <input
@@ -216,13 +213,12 @@ export const CheckoutModal: React.FC = () => {
                   value={address.state}
                   onChange={(e) => setAddress({ ...address, state: e.target.value })}
                   placeholder="Uttar Pradesh"
-                  className="w-full bg-brand-900 border border-brand-800 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-zinc-500 outline-none focus:border-brand-gold"
+                  className="w-full bg-neutral-900 border border-neutral-700 px-3.5 py-2.5 text-white placeholder-neutral-500 outline-none focus:border-brand-gold"
                 />
               </div>
-
               <div className="col-span-2 sm:col-span-1">
-                <label className="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5">
-                  Pincode *
+                <label className="block text-[10px] font-semibold text-neutral-300 uppercase tracking-widest mb-1.5">
+                  Postal Code *
                 </label>
                 <input
                   type="text"
@@ -230,116 +226,88 @@ export const CheckoutModal: React.FC = () => {
                   value={address.pincode}
                   onChange={(e) => setAddress({ ...address, pincode: e.target.value })}
                   placeholder="201017"
-                  className="w-full bg-brand-900 border border-brand-800 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-zinc-500 outline-none focus:border-brand-gold font-mono"
+                  className="w-full bg-neutral-900 border border-neutral-700 px-3.5 py-2.5 text-white placeholder-neutral-500 outline-none focus:border-brand-gold font-mono"
                 />
               </div>
             </div>
 
-            {/* Total summary mini pill */}
-            <div className="p-3.5 rounded-2xl bg-brand-900/60 border border-brand-800/80 flex items-center justify-between mt-2">
-              <span className="text-xs text-zinc-400">
-                Fulfilling <strong className="text-white">{cart.length} unique items</strong>
-              </span>
-              <span className="text-sm font-black text-brand-gold font-mono">
-                Total: ₹{finalTotal.toLocaleString()}
-              </span>
+            <div className="p-3 bg-neutral-900 border border-neutral-800 flex justify-between items-center text-xs mt-3">
+              <span className="text-neutral-400">Items to fulfill: <strong className="text-white">{cart.length}</strong></span>
+              <span className="text-brand-gold font-semibold font-mono text-sm">Total: ${finalTotal}</span>
             </div>
 
             <button
               type="submit"
-              className="w-full mt-4 py-3.5 rounded-xl bg-brand-gold hover:bg-brand-bronze text-brand-950 font-black text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg"
+              className="w-full mt-4 py-3.5 bg-brand-gold hover:bg-brand-sand text-black font-semibold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2"
             >
-              <span>Continue to Payment</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>Continue to Payment Mode</span>
+              <ArrowRight className="w-4 h-4 stroke-[2]" />
             </button>
           </form>
         )}
 
-        {/* STEP 2: Payment Selection */}
+        {/* STEP 2: Payment */}
         {step === 'payment' && (
-          <div className="space-y-5">
-            <div className="space-y-3">
-              <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
-                Select Payment Method:
-              </p>
+          <div className="space-y-4 text-xs">
+            <p className="text-[10px] uppercase tracking-widest text-neutral-400 font-semibold">
+              Select Settlement Preference:
+            </p>
 
-              {/* UPI Option */}
-              <label
-                onClick={() => setPaymentMethod('UPI')}
-                className={`flex items-start gap-3 p-4 rounded-2xl border cursor-pointer transition-all ${
-                  paymentMethod === 'UPI'
-                    ? 'border-brand-gold bg-brand-900/90 ring-1 ring-brand-gold'
-                    : 'border-brand-800 bg-brand-900/40 hover:border-brand-700'
-                }`}
-              >
-                <QrCode className="w-5 h-5 text-brand-gold shrink-0 mt-0.5" />
-                <div className="flex-1">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-bold text-white">Instant UPI & QR Code</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">
-                      FASTEST
-                    </span>
-                  </div>
-                  <p className="text-xs text-zinc-400 mt-0.5">
-                    Google Pay, PhonePe, Paytm, BHIM, CRED
-                  </p>
-                </div>
-              </label>
-
-              {/* COD Option */}
-              <label
-                onClick={() => setPaymentMethod('COD')}
-                className={`flex items-start gap-3 p-4 rounded-2xl border cursor-pointer transition-all ${
-                  paymentMethod === 'COD'
-                    ? 'border-brand-gold bg-brand-900/90 ring-1 ring-brand-gold'
-                    : 'border-brand-800 bg-brand-900/40 hover:border-brand-700'
-                }`}
-              >
-                <Banknote className="w-5 h-5 text-brand-gold shrink-0 mt-0.5" />
-                <div className="flex-1">
-                  <span className="text-sm font-bold text-white">Cash on Delivery (COD)</span>
-                  <p className="text-xs text-zinc-400 mt-0.5">
-                    Pay in cash or QR when the parcel arrives at your doorstep.
-                  </p>
-                </div>
-              </label>
-
-              {/* Card Option */}
-              <label
-                onClick={() => setPaymentMethod('CARD')}
-                className={`flex items-start gap-3 p-4 rounded-2xl border cursor-pointer transition-all ${
-                  paymentMethod === 'CARD'
-                    ? 'border-brand-gold bg-brand-900/90 ring-1 ring-brand-gold'
-                    : 'border-brand-800 bg-brand-900/40 hover:border-brand-700'
-                }`}
-              >
-                <CreditCard className="w-5 h-5 text-brand-gold shrink-0 mt-0.5" />
-                <div className="flex-1">
-                  <span className="text-sm font-bold text-white">Credit / Debit Card / Netbanking</span>
-                  <p className="text-xs text-zinc-400 mt-0.5">
-                    Visa, Mastercard, RuPay, Netbanking encrypted checkout.
-                  </p>
-                </div>
-              </label>
-            </div>
-
-            {/* Delivery Summary Banner */}
-            <div className="p-4 rounded-2xl bg-brand-900 border border-brand-800 text-xs space-y-1 text-zinc-300">
-              <div className="flex items-center gap-1.5 text-brand-gold font-semibold">
-                <Truck className="w-4 h-4" />
-                <span>Express Courier Dispatch: Bluedart / Delhivery</span>
+            <label
+              onClick={() => setPaymentMethod('CARD')}
+              className={`flex items-start gap-3 p-3.5 border cursor-pointer transition-all ${
+                paymentMethod === 'CARD'
+                  ? 'border-brand-gold bg-neutral-900'
+                  : 'border-neutral-800 hover:border-neutral-700'
+              }`}
+            >
+              <CreditCard className="w-5 h-5 text-brand-gold shrink-0 mt-0.5 stroke-[1.2]" />
+              <div>
+                <span className="text-sm font-semibold text-white">International Credit Card</span>
+                <p className="text-[11px] text-neutral-400 mt-0.5">Visa, Mastercard, American Express (Encrypted 256-Bit SSL)</p>
               </div>
-              <p className="text-[11px] text-zinc-400">
-                Delivering to: <strong className="text-white">{address.fullName}</strong>, {address.addressLine}, {address.city} ({address.pincode})
-              </p>
+            </label>
+
+            <label
+              onClick={() => setPaymentMethod('UPI')}
+              className={`flex items-start gap-3 p-3.5 border cursor-pointer transition-all ${
+                paymentMethod === 'UPI'
+                  ? 'border-brand-gold bg-neutral-900'
+                  : 'border-neutral-800 hover:border-neutral-700'
+              }`}
+            >
+              <QrCode className="w-5 h-5 text-brand-gold shrink-0 mt-0.5 stroke-[1.2]" />
+              <div>
+                <span className="text-sm font-semibold text-white">Direct UPI &amp; Netbanking</span>
+                <p className="text-[11px] text-neutral-400 mt-0.5">Instant settlement via Google Pay, PhonePe, Paytm</p>
+              </div>
+            </label>
+
+            <label
+              onClick={() => setPaymentMethod('COD')}
+              className={`flex items-start gap-3 p-3.5 border cursor-pointer transition-all ${
+                paymentMethod === 'COD'
+                  ? 'border-brand-gold bg-neutral-900'
+                  : 'border-neutral-800 hover:border-neutral-700'
+              }`}
+            >
+              <Banknote className="w-5 h-5 text-brand-gold shrink-0 mt-0.5 stroke-[1.2]" />
+              <div>
+                <span className="text-sm font-semibold text-white">Cash on Delivery (COD)</span>
+                <p className="text-[11px] text-neutral-400 mt-0.5">Settle upon white-glove doorstep delivery</p>
+              </div>
+            </label>
+
+            <div className="p-3 bg-neutral-900 border border-neutral-800 text-xs text-neutral-300 flex items-center gap-2">
+              <Truck className="w-4 h-4 text-brand-gold shrink-0 stroke-[1.2]" />
+              <span>Complimentary global express dispatch via DHL / Bluedart</span>
             </div>
 
-            {/* Back & Pay buttons */}
             <div className="flex gap-3 pt-2">
               <button
                 type="button"
                 onClick={() => setStep('details')}
-                className="py-3.5 px-5 rounded-xl bg-brand-900 border border-brand-800 text-zinc-400 hover:text-white text-xs font-bold uppercase"
+                className="py-3 px-4 border border-neutral-700 text-neutral-400 hover:text-white uppercase text-xs tracking-wider font-semibold"
               >
                 Back
               </button>
@@ -347,75 +315,62 @@ export const CheckoutModal: React.FC = () => {
                 type="button"
                 disabled={isProcessing}
                 onClick={handlePlaceOrder}
-                className="flex-1 py-3.5 px-4 rounded-xl bg-brand-gold hover:bg-brand-bronze text-brand-950 font-black text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-xl shadow-brand-gold/15"
+                className="flex-1 py-3 bg-brand-gold hover:bg-brand-sand text-black font-semibold text-xs uppercase tracking-widest transition-all"
               >
-                {isProcessing ? (
-                  <span>Generating Order Token...</span>
-                ) : (
-                  <span>Place Order (₹{finalTotal.toLocaleString()})</span>
-                )}
+                {isProcessing ? 'Confirming with Atelier...' : `Place Atelier Order ($${finalTotal})`}
               </button>
             </div>
           </div>
         )}
 
-        {/* STEP 3: Order Placed Success */}
+        {/* STEP 3: Success Confirmation */}
         {step === 'success' && orderConfirmation && (
-          <div className="space-y-6 text-center py-4">
-            <div className="w-16 h-16 rounded-full bg-brand-gold/15 border border-brand-gold/30 flex items-center justify-center mx-auto text-brand-gold">
-              <CheckCircle2 className="w-10 h-10 animate-bounce" />
+          <div className="space-y-5 text-center py-2 font-sans">
+            <div className="w-14 h-14 border border-brand-gold/50 flex items-center justify-center mx-auto text-brand-gold">
+              <CheckCircle2 className="w-8 h-8 stroke-[1.5]" />
             </div>
 
             <div>
-              <h4 className="text-2xl font-black text-white font-display uppercase tracking-tight">
-                Order Confirmed!
+              <h4 className="font-serif text-2xl uppercase tracking-wider text-white font-bold">
+                Order Registered With Atelier
               </h4>
-              <p className="text-xs sm:text-sm text-zinc-400 mt-1 max-w-md mx-auto">
-                Thank you for dropping with Milan Men's Fashion. Your order has been registered and is being prepped for dispatch.
+              <p className="text-xs text-neutral-400 mt-1">
+                Thank you for your patronage, {orderConfirmation.shippingAddress.fullName}.
               </p>
             </div>
 
-            {/* Receipt Summary Card */}
-            <div className="bg-brand-900/80 border border-brand-800 rounded-2xl p-5 text-left text-xs space-y-3 font-mono">
-              <div className="flex justify-between border-b border-brand-800 pb-2">
-                <span className="text-zinc-400 font-sans">Order Identifier:</span>
+            <div className="bg-neutral-900 border border-neutral-800 p-4 text-left text-xs space-y-2 font-mono">
+              <div className="flex justify-between border-b border-neutral-800 pb-2">
+                <span className="text-neutral-400 font-sans">Order Identifier:</span>
                 <span className="text-brand-gold font-bold">{orderConfirmation.orderId}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-zinc-400 font-sans">Date:</span>
-                <span className="text-white">{orderConfirmation.date}</span>
+                <span className="text-neutral-400 font-sans">Valuation:</span>
+                <span className="text-white">${orderConfirmation.grandTotal}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-zinc-400 font-sans">Payment Method:</span>
-                <span className="text-white font-bold">{orderConfirmation.paymentMethod}</span>
-              </div>
-              <div className="flex justify-between border-t border-brand-800 pt-2 text-sm font-bold">
-                <span className="font-sans">Grand Total:</span>
-                <span className="text-brand-gold">₹{orderConfirmation.grandTotal.toLocaleString()}</span>
+                <span className="text-neutral-400 font-sans">Payment Method:</span>
+                <span className="text-white">{orderConfirmation.paymentMethod}</span>
               </div>
             </div>
 
-            {/* WhatsApp Integration Button */}
             <div className="space-y-2">
               <a
                 href={generateWhatsAppMessage(orderConfirmation)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg"
+                className="w-full py-3.5 bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors block"
               >
                 <MessageSquare className="w-4 h-4" />
                 <span>Send Order Receipt to WhatsApp (+91 7895499065)</span>
               </a>
-              <p className="text-[11px] text-zinc-500">
-                You will also receive instant SMS tracking updates on {orderConfirmation.shippingAddress.phone}.
-              </p>
             </div>
 
             <button
               onClick={handleClose}
-              className="w-full py-3 rounded-xl bg-white hover:bg-zinc-200 text-black font-bold uppercase tracking-wider text-xs"
+              className="w-full py-3 border border-neutral-700 hover:border-white text-white font-semibold text-xs uppercase tracking-widest transition-colors"
             >
-              Continue Shopping Vault
+              Continue Exploring Atelier
             </button>
           </div>
         )}

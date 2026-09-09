@@ -1,28 +1,27 @@
-export type Category = 'all' | 'hoodies' | 'tees' | 'bottomwear' | 'jackets' | 'accessories';
+export type Category = 'all' | 'business' | 'polos' | 'casuals' | 'shirts' | 'outerwear';
 
 export interface Product {
   id: string;
   name: string;
   tagline: string;
-  category: 'hoodies' | 'tees' | 'bottomwear' | 'jackets' | 'accessories';
+  category: 'business' | 'polos' | 'casuals' | 'shirts' | 'outerwear';
   price: number;
-  originalPrice: number;
-  discountPercentage: number;
+  originalPrice?: number;
+  discountPercentage?: number;
   images: string[];
   colors: { name: string; hex: string }[];
   sizes: ('S' | 'M' | 'L' | 'XL' | 'XXL')[];
   rating: number;
   reviewCount: number;
-  isNewDrop?: boolean;
+  isNew?: boolean;
   isBestSeller?: boolean;
   isLimitedEdition?: boolean;
   stockLeft: number;
   fabricSpecs: {
-    gsm: string;
-    composition: string;
+    material: string;
+    origin: string;
     fit: string;
     care: string[];
-    origin: string;
   };
   description: string;
 }

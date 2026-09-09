@@ -63,7 +63,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               Limited Vault
             </span>
           )}
-          {product.isNewDrop && !product.isLimitedEdition && (
+          {product.isNew && !product.isLimitedEdition && (
             <span className="px-2.5 py-1 rounded-md bg-white text-black text-[10px] font-black uppercase tracking-wider shadow-md">
               New Drop
             </span>
@@ -111,15 +111,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       {/* Product Content Details */}
       <div className="p-4 flex flex-col flex-1 justify-between gap-3">
         <div>
-          {/* Rating & Fabric GSM Pill */}
+          {/* Rating & Fabric Origin Pill */}
           <div className="flex items-center justify-between text-xs text-zinc-400 mb-1.5">
             <div className="flex items-center gap-1">
               <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
               <span className="font-semibold text-white">{product.rating}</span>
               <span className="text-[11px] text-zinc-500">({product.reviewCount})</span>
             </div>
-            <span className="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-brand-850 text-zinc-400 border border-brand-800">
-              {product.fabricSpecs.gsm.split(' ')[0]} GSM
+            <span className="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-brand-850 text-zinc-400 border border-brand-800 truncate max-w-[120px]">
+              {product.fabricSpecs.origin.split(' ')[0]}
             </span>
           </div>
 
@@ -134,15 +134,19 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
           {/* Price Row */}
           <div className="flex items-baseline gap-2 mt-2">
-            <span className="text-base sm:text-lg font-extrabold text-white">
-              ₹{product.price.toLocaleString()}
+            <span className="text-base sm:text-lg font-extrabold text-white font-mono">
+              ${product.price}
             </span>
-            <span className="text-xs text-zinc-500 line-through">
-              ₹{product.originalPrice.toLocaleString()}
-            </span>
-            <span className="text-[11px] font-bold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.2 rounded">
-              {product.discountPercentage}% OFF
-            </span>
+            {product.originalPrice && (
+              <span className="text-xs text-zinc-500 line-through font-mono">
+                ${product.originalPrice}
+              </span>
+            )}
+            {product.discountPercentage && (
+              <span className="text-[11px] font-bold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.2 rounded">
+                {product.discountPercentage}% OFF
+              </span>
+            )}
           </div>
         </div>
 

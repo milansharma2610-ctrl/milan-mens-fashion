@@ -65,8 +65,8 @@ interface ShopContextType {
 
 const ShopContext = createContext<ShopContextType | undefined>(undefined);
 
-const FREE_SHIPPING_THRESHOLD = 1499;
-const STANDARD_SHIPPING_FEE = 99;
+const FREE_SHIPPING_THRESHOLD = 150;
+const STANDARD_SHIPPING_FEE = 25;
 
 export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // Cart state persisted
@@ -108,7 +108,7 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [filters, setFilters] = useState<FilterState>({
     category: 'all',
     selectedSizes: [],
-    priceRange: [999, 4999],
+    priceRange: [100, 500],
     sortBy: 'featured',
     searchQuery: '',
   });
@@ -274,7 +274,7 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setFilters({
       category: 'all',
       selectedSizes: [],
-      priceRange: [999, 4999],
+      priceRange: [100, 500],
       sortBy: 'featured',
       searchQuery: '',
     });
@@ -316,7 +316,7 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (filters.sortBy === 'price-low') return a.price - b.price;
       if (filters.sortBy === 'price-high') return b.price - a.price;
       if (filters.sortBy === 'rating') return b.rating - a.rating;
-      if (filters.sortBy === 'newest') return (b.isNewDrop ? 1 : 0) - (a.isNewDrop ? 1 : 0);
+      if (filters.sortBy === 'newest') return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0);
       return 0; // featured default order
     });
   }, [filters]);

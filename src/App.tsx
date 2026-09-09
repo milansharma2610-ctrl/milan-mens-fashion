@@ -2,9 +2,12 @@ import React from 'react';
 import { ShopProvider } from './context/ShopContext';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { TrustTicker } from './components/TrustTicker';
 import { Categories } from './components/Categories';
+import { NewArrivals } from './components/NewArrivals';
+import { EditorialInterstitial } from './components/EditorialInterstitial';
 import { ProductCatalog } from './components/ProductCatalog';
+import { BrandPillars } from './components/BrandPillars';
+import { AboutBrandStory } from './components/AboutBrandStory';
 import { TrustAndReviews } from './components/TrustAndReviews';
 import { Footer } from './components/Footer';
 import { CartDrawer } from './components/CartDrawer';
@@ -19,20 +22,23 @@ import { MobileNav } from './components/MobileNav';
 export const App: React.FC = () => {
   return (
     <ShopProvider>
-      <div className="min-h-screen bg-brand-950 text-white flex flex-col selection:bg-brand-gold selection:text-black">
+      <div className="min-h-screen bg-[#faf9f6] text-[#111111] font-sans antialiased selection:bg-brand-gold selection:text-black flex flex-col">
         {/* Global Navigation & Header */}
         <Header />
 
-        {/* Main Content Sections */}
+        {/* Main Content Sections matching user design flow */}
         <main className="flex-1">
           <Hero />
-          <TrustTicker />
           <Categories />
+          <NewArrivals />
+          <EditorialInterstitial />
           <ProductCatalog />
+          <BrandPillars />
+          <AboutBrandStory />
           <TrustAndReviews />
         </main>
 
-        {/* Global Footer */}
+        {/* Global Luxury Footer */}
         <Footer />
 
         {/* Drawers & Modals */}

@@ -10,61 +10,63 @@ export const SizeGuideModal: React.FC = () => {
 
   const sizingData = {
     inches: [
-      { size: 'S', chest: '42"', length: '28"', shoulder: '21.5"', sleeve: '23.5"' },
-      { size: 'M', chest: '44"', length: '29"', shoulder: '22.5"', sleeve: '24.0"' },
-      { size: 'L', chest: '46"', length: '30"', shoulder: '23.5"', sleeve: '24.5"' },
-      { size: 'XL', chest: '48"', length: '31"', shoulder: '24.5"', sleeve: '25.0"' },
-      { size: 'XXL', chest: '50"', length: '32"', shoulder: '25.5"', sleeve: '25.5"' },
+      { size: 'S', chest: '38"', length: '28"', shoulder: '17.5"', sleeve: '25.0"' },
+      { size: 'M', chest: '40"', length: '29"', shoulder: '18.2"', sleeve: '25.5"' },
+      { size: 'L', chest: '42"', length: '30"', shoulder: '19.0"', sleeve: '26.0"' },
+      { size: 'XL', chest: '44"', length: '31"', shoulder: '19.8"', sleeve: '26.5"' },
+      { size: 'XXL', chest: '46"', length: '32"', shoulder: '20.5"', sleeve: '27.0"' },
     ],
     cm: [
-      { size: 'S', chest: '106 cm', length: '71 cm', shoulder: '55 cm', sleeve: '60 cm' },
-      { size: 'M', chest: '112 cm', length: '74 cm', shoulder: '57 cm', sleeve: '61 cm' },
-      { size: 'L', chest: '117 cm', length: '76 cm', shoulder: '60 cm', sleeve: '62 cm' },
-      { size: 'XL', chest: '122 cm', length: '79 cm', shoulder: '62 cm', sleeve: '63.5 cm' },
-      { size: 'XXL', chest: '127 cm', length: '81 cm', shoulder: '65 cm', sleeve: '65 cm' },
+      { size: 'S', chest: '96 cm', length: '71 cm', shoulder: '44.5 cm', sleeve: '63.5 cm' },
+      { size: 'M', chest: '102 cm', length: '74 cm', shoulder: '46.2 cm', sleeve: '64.8 cm' },
+      { size: 'L', chest: '107 cm', length: '76 cm', shoulder: '48.3 cm', sleeve: '66.0 cm' },
+      { size: 'XL', chest: '112 cm', length: '79 cm', shoulder: '50.3 cm', sleeve: '67.3 cm' },
+      { size: 'XXL', chest: '117 cm', length: '81 cm', shoulder: '52.0 cm', sleeve: '68.5 cm' },
     ],
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-brand-950 border border-brand-800 w-full max-w-xl rounded-3xl p-6 sm:p-8 shadow-2xl animate-slide-up relative">
+    <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 font-sans">
+      <div className="bg-brand-black border border-neutral-800 w-full max-w-xl p-6 sm:p-8 shadow-2xl animate-slide-up relative">
         {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-brand-800">
+        <div className="flex items-center justify-between pb-4 border-b border-neutral-800">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-brand-gold/10 text-brand-gold flex items-center justify-center">
-              <Ruler className="w-5 h-5" />
+            <div className="w-8 h-8 bg-brand-gold/15 text-brand-gold flex items-center justify-center">
+              <Ruler className="w-4 h-4 stroke-[1.2]" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-white font-display">Streetwear Sizing Guide</h3>
-              <p className="text-xs text-zinc-400">Tailored boxy & drop-shoulder fits</p>
+              <h3 className="text-base sm:text-lg font-serif uppercase tracking-wider text-white font-bold">
+                Sartorial Sizing Guide
+              </h3>
+              <p className="text-[11px] text-neutral-400">Precision Italian tailoring &amp; structured fits</p>
             </div>
           </div>
           <button
             onClick={() => setIsSizeGuideOpen(false)}
-            className="p-2 text-zinc-400 hover:text-white rounded-lg hover:bg-brand-900"
+            className="p-1 text-neutral-400 hover:text-white"
           >
-            <X className="w-5 h-5" />
+            <X className="w-5 h-5 stroke-[1.2]" />
           </button>
         </div>
 
         {/* Unit Toggle */}
         <div className="flex items-center justify-between my-5">
-          <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">
-            Measurement Standard:
+          <span className="text-[10px] font-semibold text-neutral-400 uppercase tracking-widest">
+            Measurement Scale:
           </span>
-          <div className="flex rounded-xl bg-brand-900 p-1 border border-brand-800">
+          <div className="flex border border-neutral-700 bg-neutral-900">
             <button
               onClick={() => setUnit('inches')}
-              className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
-                unit === 'inches' ? 'bg-brand-gold text-brand-950' : 'text-zinc-400 hover:text-white'
+              className={`px-3 py-1 text-xs uppercase font-medium transition-all ${
+                unit === 'inches' ? 'bg-brand-gold text-black font-bold' : 'text-neutral-400 hover:text-white'
               }`}
             >
               Inches (in)
             </button>
             <button
               onClick={() => setUnit('cm')}
-              className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
-                unit === 'cm' ? 'bg-brand-gold text-brand-950' : 'text-zinc-400 hover:text-white'
+              className={`px-3 py-1 text-xs uppercase font-medium transition-all ${
+                unit === 'cm' ? 'bg-brand-gold text-black font-bold' : 'text-neutral-400 hover:text-white'
               }`}
             >
               Centimeters (cm)
@@ -73,45 +75,45 @@ export const SizeGuideModal: React.FC = () => {
         </div>
 
         {/* Sizing Table */}
-        <div className="overflow-x-auto rounded-xl border border-brand-800 bg-brand-900/60">
-          <table className="w-full text-left text-xs">
+        <div className="overflow-x-auto border border-neutral-800 bg-neutral-900/60">
+          <table className="w-full text-left text-xs font-sans">
             <thead>
-              <tr className="border-b border-brand-800 text-zinc-400 font-mono uppercase bg-brand-900">
-                <th className="py-3 px-4">Size</th>
-                <th className="py-3 px-4">Chest</th>
-                <th className="py-3 px-4">Body Length</th>
-                <th className="py-3 px-4">Shoulder</th>
-                <th className="py-3 px-4">Sleeve</th>
+              <tr className="border-b border-neutral-800 text-neutral-400 font-mono uppercase bg-neutral-900 text-[10px]">
+                <th className="py-2.5 px-3">Size</th>
+                <th className="py-2.5 px-3">Chest</th>
+                <th className="py-2.5 px-3">Length</th>
+                <th className="py-2.5 px-3">Shoulder</th>
+                <th className="py-2.5 px-3">Sleeve</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-brand-800/60 font-medium text-zinc-200">
+            <tbody className="divide-y divide-neutral-800 font-medium text-neutral-200">
               {sizingData[unit].map((row) => (
-                <tr key={row.size} className="hover:bg-brand-850/60">
-                  <td className="py-3 px-4 font-bold text-brand-gold">{row.size}</td>
-                  <td className="py-3 px-4">{row.chest}</td>
-                  <td className="py-3 px-4">{row.length}</td>
-                  <td className="py-3 px-4">{row.shoulder}</td>
-                  <td className="py-3 px-4">{row.sleeve}</td>
+                <tr key={row.size} className="hover:bg-neutral-800/40">
+                  <td className="py-2.5 px-3 font-bold text-brand-gold font-mono">{row.size}</td>
+                  <td className="py-2.5 px-3">{row.chest}</td>
+                  <td className="py-2.5 px-3">{row.length}</td>
+                  <td className="py-2.5 px-3">{row.shoulder}</td>
+                  <td className="py-2.5 px-3">{row.sleeve}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        {/* Fit Recommendation Note */}
-        <div className="mt-5 p-3.5 rounded-2xl bg-brand-900 border border-brand-800/80 flex items-start gap-3">
-          <Sparkles className="w-4 h-4 text-brand-gold shrink-0 mt-0.5" />
-          <p className="text-xs text-zinc-300 leading-relaxed">
-            <strong className="text-white">Designer Fit Advice:</strong> Our hoodies and tees are intentionally patterned with exaggerated drop shoulders and wide boxy torsos. For an authentic oversized streetwear drape, <span className="text-brand-gold">order your usual size</span>. For a regular standard fit, size down by one.
+        {/* Fit Advice */}
+        <div className="mt-5 p-3.5 bg-neutral-900 border border-neutral-800 flex items-start gap-3">
+          <Sparkles className="w-4 h-4 text-brand-gold shrink-0 mt-0.5 stroke-[1.2]" />
+          <p className="text-xs text-neutral-300 leading-relaxed font-light">
+            <strong className="text-white font-medium">Master Tailor Advice:</strong> Our polos and shirts are tailored with modern European precision. Select your true size for an elegant silhouette beneath tailored jackets. If between sizes, order one size up.
           </p>
         </div>
 
         <div className="mt-6">
           <button
             onClick={() => setIsSizeGuideOpen(false)}
-            className="w-full py-3 rounded-xl bg-white hover:bg-zinc-200 text-black font-bold uppercase tracking-wider text-xs"
+            className="w-full py-3 bg-brand-gold text-black font-semibold uppercase tracking-widest text-xs hover:bg-brand-sand transition-colors"
           >
-            Got It, Return to Product
+            Return to Atelier Piece
           </button>
         </div>
       </div>

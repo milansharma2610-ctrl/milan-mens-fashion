@@ -4,57 +4,37 @@
 
 @layer base {
   body {
-    background-color: #0A0A0A;
-    color: #EDEDED;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    background-color: #faf9f6;
+    color: #111111;
   }
 
-  /* Custom scrollbar for streetwear aesthetic */
+  /* Custom scrollbar for luxury aesthetic */
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
   }
   ::-webkit-scrollbar-track {
-    background: #121212;
+    background: #0d0d0d;
   }
   ::-webkit-scrollbar-thumb {
-    background: #2E2E2E;
-    border-radius: 3px;
+    background: #333333;
+    border-radius: 2px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #D4AF37;
+    background: #c5a880;
   }
 }
 
-/* Glassmorphism & luxury textures */
-.glass-panel {
-  background: rgba(18, 18, 18, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.glass-dropdown {
-  background: rgba(14, 14, 14, 0.95);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.gold-gradient-text {
-  background: linear-gradient(135deg, #FFF0C9 0%, #D4AF37 50%, #997A15 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gold-border-glow {
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
-}
-
-/* Hide scrollbar utility */
+/* Hide horizontal scrollbar for clean luxury swipe feeling */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Smooth tap highlights */
+* {
+  -webkit-tap-highlight-color: transparent;
 }

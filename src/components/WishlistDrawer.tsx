@@ -18,21 +18,21 @@ export const WishlistDrawer: React.FC = () => {
   const wishlistProducts = PRODUCTS.filter((p) => wishlist.includes(p.id));
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex justify-end">
-      <div className="w-full max-w-md bg-brand-950 border-l border-brand-800 h-full flex flex-col justify-between shadow-2xl animate-slide-up">
+    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex justify-end font-sans">
+      <div className="w-full max-w-md bg-brand-black border-l border-neutral-800 h-full flex flex-col justify-between shadow-2xl animate-slide-up">
         {/* Header */}
-        <div className="p-4 sm:p-5 border-b border-brand-800 flex items-center justify-between">
+        <div className="p-4 sm:p-5 border-b border-neutral-800 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Heart className="w-5 h-5 text-red-500 fill-red-500" />
-            <h3 className="text-base font-bold text-white uppercase tracking-wider font-display">
-              Saved Vault ({wishlistProducts.length})
+            <Heart className="w-5 h-5 text-brand-gold fill-brand-gold stroke-[1.2]" />
+            <h3 className="text-sm font-semibold text-white uppercase tracking-widest font-serif">
+              Saved Pieces ({wishlistProducts.length})
             </h3>
           </div>
           <button
             onClick={() => setIsWishlistOpen(false)}
-            className="p-1.5 text-zinc-400 hover:text-white rounded-lg hover:bg-brand-900 transition-colors"
+            className="p-1.5 text-neutral-400 hover:text-white transition-colors"
           >
-            <X className="w-5 h-5" />
+            <X className="w-5 h-5 stroke-[1.2]" />
           </button>
         </div>
 
@@ -42,7 +42,7 @@ export const WishlistDrawer: React.FC = () => {
             wishlistProducts.map((product) => (
               <div
                 key={product.id}
-                className="flex gap-3 p-3 rounded-2xl bg-brand-900/60 border border-brand-800/80"
+                className="flex gap-3 p-3 bg-neutral-900/60 border border-neutral-800"
               >
                 <img
                   src={product.images[0]}
@@ -51,7 +51,7 @@ export const WishlistDrawer: React.FC = () => {
                     setQuickViewProduct(product);
                     setIsWishlistOpen(false);
                   }}
-                  className="w-18 h-22 sm:w-20 sm:h-24 object-cover rounded-xl bg-brand-950 shrink-0 cursor-pointer"
+                  className="w-16 h-22 object-cover bg-black shrink-0 cursor-pointer"
                 />
 
                 <div className="flex-1 min-w-0 flex flex-col justify-between">
@@ -62,25 +62,27 @@ export const WishlistDrawer: React.FC = () => {
                           setQuickViewProduct(product);
                           setIsWishlistOpen(false);
                         }}
-                        className="text-xs sm:text-sm font-bold text-white line-clamp-1 cursor-pointer hover:text-brand-gold transition-colors"
+                        className="text-xs font-semibold text-white uppercase tracking-wider line-clamp-1 cursor-pointer hover:text-brand-gold transition-colors font-serif"
                       >
                         {product.name}
                       </h4>
                       <button
                         onClick={() => toggleWishlist(product.id)}
-                        className="text-zinc-500 hover:text-red-400 transition-colors p-1"
+                        className="text-neutral-500 hover:text-red-400 transition-colors p-1"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
                     </div>
-                    <p className="text-[11px] text-zinc-400 line-clamp-1">{product.tagline}</p>
+                    <p className="text-[11px] text-neutral-400 line-clamp-1">{product.tagline}</p>
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="text-xs sm:text-sm font-bold text-white font-mono">
-                        ₹{product.price.toLocaleString()}
+                      <span className="text-xs font-semibold text-white font-mono">
+                        ${product.price}
                       </span>
-                      <span className="text-[11px] text-zinc-500 line-through">
-                        ₹{product.originalPrice.toLocaleString()}
-                      </span>
+                      {product.originalPrice && (
+                        <span className="text-[10px] text-neutral-500 line-through font-mono">
+                          ${product.originalPrice}
+                        </span>
+                      )}
                     </div>
                   </div>
 
@@ -89,38 +91,40 @@ export const WishlistDrawer: React.FC = () => {
                       addToCart(product, product.sizes[0] || 'M', product.colors[0]?.name || 'Standard', 1);
                       toggleWishlist(product.id);
                     }}
-                    className="mt-2 py-1.5 px-3 rounded-lg bg-white hover:bg-brand-gold text-black text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors"
+                    className="mt-2 py-1.5 px-3 bg-white hover:bg-brand-gold text-black text-[10px] font-semibold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors"
                   >
-                    <ShoppingBag className="w-3 h-3" />
-                    <span>Move to Cart</span>
+                    <ShoppingBag className="w-3 h-3 stroke-[1.2]" />
+                    <span>Move to Bag</span>
                   </button>
                 </div>
               </div>
             ))
           ) : (
             <div className="py-16 text-center space-y-3">
-              <div className="w-14 h-14 rounded-full bg-brand-900 border border-brand-800 flex items-center justify-center mx-auto text-zinc-500">
-                <Heart className="w-6 h-6 text-zinc-400" />
+              <div className="w-12 h-12 border border-neutral-800 flex items-center justify-center mx-auto text-neutral-500">
+                <Heart className="w-5 h-5 text-neutral-400 stroke-[1.2]" />
               </div>
-              <h4 className="text-base font-bold text-white font-display">No Favorites Saved</h4>
-              <p className="text-xs text-zinc-400 max-w-xs mx-auto">
-                Tap the heart icon on any drop to save pieces to your personal wishlist.
+              <h4 className="text-sm font-semibold text-white uppercase tracking-widest font-serif">
+                No Saved Selections
+              </h4>
+              <p className="text-xs text-neutral-400 max-w-xs mx-auto font-light">
+                Save pieces to your personal atelier shortlist by tapping the heart icon on any garment.
               </p>
             </div>
           )}
         </div>
 
         {/* Footer */}
-        <div className="p-4 sm:p-5 border-t border-brand-800 bg-brand-950">
+        <div className="p-4 sm:p-5 border-t border-neutral-800 bg-brand-black">
           <button
             onClick={() => {
               setIsWishlistOpen(false);
               document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="w-full py-3 rounded-xl bg-brand-gold hover:bg-brand-bronze text-brand-950 font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2"
+            className="w-full py-3 bg-brand-gold hover:bg-brand-sand text-black font-semibold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2"
           >
-            <span>Explore Streetwear Drops</span>
-            <ArrowRight className="w-4 h-4" />
+            <span>Explore Atelier Collection</span>
+            <ArrowRight className="w-4 h-4 stroke-[2]" />
           </button>
         </div>
       </div>
