@@ -11,8 +11,8 @@ export const BrandPillars: React.FC = () => {
             <Sparkles className="w-6 h-6 stroke-[1.2]" />
           </div>
           <div>
-            <h4 className="text-xs uppercase font-semibold tracking-wider font-serif">Italian Fabrics</h4>
-            <p className="text-[10px] sm:text-xs text-neutral-400 font-light mt-1 font-sans">Biella wool &amp; Como silks</p>
+            <h4 className="text-xs uppercase font-semibold tracking-wider font-serif">Tuscan Leathers</h4>
+            <p className="text-[10px] sm:text-xs text-neutral-400 font-light mt-1 font-sans">French boxcalf &amp; reverse suedes</p>
           </div>
         </div>
 
@@ -22,8 +22,8 @@ export const BrandPillars: React.FC = () => {
             <RotateCcw className="w-6 h-6 stroke-[1.2]" />
           </div>
           <div>
-            <h4 className="text-xs uppercase font-semibold tracking-wider font-serif">Easy Returns</h4>
-            <p className="text-[10px] sm:text-xs text-neutral-400 font-light mt-1 font-sans">Hassle-free within 14 days</p>
+            <h4 className="text-xs uppercase font-semibold tracking-wider font-serif">Free Size Exchanges</h4>
+            <p className="text-[10px] sm:text-xs text-neutral-400 font-light mt-1 font-sans">Guaranteed perfect fit worldwide</p>
           </div>
         </div>
 
@@ -33,8 +33,8 @@ export const BrandPillars: React.FC = () => {
             <Lock className="w-6 h-6 stroke-[1.2]" />
           </div>
           <div>
-            <h4 className="text-xs uppercase font-semibold tracking-wider font-serif">Encrypted Pay</h4>
-            <p className="text-[10px] sm:text-xs text-neutral-400 font-light mt-1 font-sans">100% secure checkout</p>
+            <h4 className="text-xs uppercase font-semibold tracking-wider font-serif">Goodyear Longevity</h4>
+            <p className="text-[10px] sm:text-xs text-neutral-400 font-light mt-1 font-sans">100% re-soleable for a lifetime</p>
           </div>
         </div>
 
@@ -45,7 +45,7 @@ export const BrandPillars: React.FC = () => {
           </div>
           <div>
             <h4 className="text-xs uppercase font-semibold tracking-wider font-serif">Global Express</h4>
-            <p className="text-[10px] sm:text-xs text-neutral-400 font-light mt-1 font-sans">Direct from Italy</p>
+            <p className="text-[10px] sm:text-xs text-neutral-400 font-light mt-1 font-sans">Direct from Marche, Italy</p>
           </div>
         </div>
       </div>

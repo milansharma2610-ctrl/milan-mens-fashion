@@ -1,41 +1,57 @@
-export type Category = 'all' | 'business' | 'polos' | 'casuals' | 'shirts' | 'outerwear';
+export type Category = 'all' | 'loafers' | 'sneakers' | 'oxfords' | 'boots' | 'sandals';
+
+export type ShoeSize =
+  | 'US 7'
+  | 'US 7.5'
+  | 'US 8'
+  | 'US 8.5'
+  | 'US 9'
+  | 'US 9.5'
+  | 'US 10'
+  | 'US 10.5'
+  | 'US 11'
+  | 'US 11.5'
+  | 'US 12';
+
+export interface ShoeSpecs {
+  leather: string;
+  construction: string;
+  sole: string;
+  origin: string;
+  care: string[];
+}
 
 export interface Product {
   id: string;
   name: string;
   tagline: string;
-  category: 'business' | 'polos' | 'casuals' | 'shirts' | 'outerwear';
+  category: 'loafers' | 'sneakers' | 'oxfords' | 'boots' | 'sandals';
   price: number;
   originalPrice?: number;
   discountPercentage?: number;
   images: string[];
   colors: { name: string; hex: string }[];
-  sizes: ('S' | 'M' | 'L' | 'XL' | 'XXL')[];
+  sizes: ShoeSize[];
   rating: number;
   reviewCount: number;
   isNew?: boolean;
   isBestSeller?: boolean;
   isLimitedEdition?: boolean;
   stockLeft: number;
-  fabricSpecs: {
-    material: string;
-    origin: string;
-    fit: string;
-    care: string[];
-  };
+  shoeSpecs: ShoeSpecs;
   description: string;
 }
 
 export interface CartItem {
   product: Product;
-  selectedSize: 'S' | 'M' | 'L' | 'XL' | 'XXL';
+  selectedSize: ShoeSize;
   selectedColor: string;
   quantity: number;
 }
 
 export interface FilterState {
   category: Category;
-  selectedSizes: ('S' | 'M' | 'L' | 'XL' | 'XXL')[];
+  selectedSizes: ShoeSize[];
   priceRange: [number, number];
   sortBy: 'featured' | 'newest' | 'price-low' | 'price-high' | 'rating';
   searchQuery: string;

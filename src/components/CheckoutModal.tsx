@@ -88,18 +88,18 @@ export const CheckoutModal: React.FC = () => {
   };
 
   const generateWhatsAppMessage = (order: OrderConfirmation) => {
-    const text = `*New Order Placed — MILANWORLD Men's Atelier (milanworld.online)*\n\n` +
+    const text = `*New Order Placed — MILANWORLD Calzaturificio (milanworld.online)*\n\n` +
       `*Order Identifier:* ${order.orderId}\n` +
       `*Patron Name:* ${order.shippingAddress.fullName}\n` +
       `*Contact:* ${order.shippingAddress.phone} | ${order.shippingAddress.email}\n` +
       `*Destination:* ${order.shippingAddress.addressLine}, ${order.shippingAddress.city}, ${order.shippingAddress.state} - ${order.shippingAddress.pincode}\n\n` +
-      `*Sartorial Selection:* \n` +
+      `*Footwear Selection:* \n` +
       order.items
-        .map((i) => `• ${i.product.name} (Size: ${i.selectedSize}, Qty: ${i.quantity}) - $${i.product.price * i.quantity}`)
+        .map((i) => `• ${i.product.name} (Shoe Size: ${i.selectedSize}, Qty: ${i.quantity}) - $${i.product.price * i.quantity}`)
         .join('\n') +
       `\n\n*Payment Mode:* ${order.paymentMethod}\n` +
       `*Total Valuation:* $${order.grandTotal}\n\n` +
-      `Dispatched via Milan Atelier Concierge Hub.`;
+      `Dispatched via Marche & Milan Footwear Concierge Hub.`;
 
     return `https://wa.me/917895499065?text=${encodeURIComponent(text)}`;
   };

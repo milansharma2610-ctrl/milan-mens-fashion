@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ShoeSize } from '../types';
 import { useShop } from '../context/ShopContext';
 import {
   X,
@@ -20,7 +21,7 @@ export const ProductDetailModal: React.FC = () => {
   } = useShop();
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [selectedSize, setSelectedSize] = useState<'S' | 'M' | 'L' | 'XL' | 'XXL'>('M');
+  const [selectedSize, setSelectedSize] = useState<ShoeSize>('US 9');
   const [selectedColor, setSelectedColor] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState<'specs' | 'care' | 'shipping'>('specs');
@@ -29,7 +30,7 @@ export const ProductDetailModal: React.FC = () => {
   useEffect(() => {
     if (quickViewProduct) {
       setActiveImageIndex(0);
-      setSelectedSize(quickViewProduct.sizes[0] || 'M');
+      setSelectedSize(quickViewProduct.sizes[0] || 'US 9');
       setSelectedColor(quickViewProduct.colors[0]?.name || 'Standard');
       setQuantity(1);
     }
@@ -157,25 +158,25 @@ export const ProductDetailModal: React.FC = () => {
             {/* Size Selector + Size Guide */}
             <div>
               <div className="flex items-center justify-between text-xs mb-2">
-                <span className="font-semibold text-neutral-300 uppercase tracking-widest text-[10px]">Select Fit:</span>
+                <span className="font-semibold text-neutral-300 uppercase tracking-widest text-[10px]">Select Shoe Size:</span>
                 <button
                   type="button"
                   onClick={() => setIsSizeGuideOpen(true)}
                   className="inline-flex items-center gap-1 text-brand-gold hover:text-white transition-colors text-[11px] underline underline-offset-4"
                 >
                   <Ruler className="w-3.5 h-3.5 stroke-[1.2]" />
-                  <span>Sartorial Sizing Guide</span>
+                  <span>Footwear Sizing Matrix</span>
                 </button>
               </div>
 
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 {quickViewProduct.sizes.map((size) => (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`flex-1 py-2.5 text-xs uppercase transition-all font-semibold ${
+                    className={`px-3 py-2 text-xs uppercase transition-all font-semibold rounded ${
                       selectedSize === size
-                        ? 'bg-brand-gold text-black font-bold'
+                        ? 'bg-brand-gold text-black font-bold shadow-md'
                         : 'bg-neutral-900 border border-neutral-800 text-neutral-300 hover:border-neutral-700'
                     }`}
                   >
@@ -250,7 +251,7 @@ export const ProductDetailModal: React.FC = () => {
                     activeTab === 'specs' ? 'text-brand-gold font-bold border-b border-brand-gold' : 'text-neutral-400'
                   }`}
                 >
-                  Materials &amp; Provenance
+                  Leather &amp; Welting
                 </button>
                 <button
                   onClick={() => setActiveTab('care')}
@@ -258,7 +259,7 @@ export const ProductDetailModal: React.FC = () => {
                     activeTab === 'care' ? 'text-brand-gold font-bold border-b border-brand-gold' : 'text-neutral-400'
                   }`}
                 >
-                  Garment Care
+                  Care &amp; Longevity
                 </button>
                 <button
                   onClick={() => setActiveTab('shipping')}
@@ -273,15 +274,16 @@ export const ProductDetailModal: React.FC = () => {
               <div className="py-3 text-xs text-neutral-300 leading-relaxed font-light">
                 {activeTab === 'specs' && (
                   <div className="space-y-1">
-                    <p>• <strong>Composition:</strong> {quickViewProduct.fabricSpecs.material}</p>
-                    <p>• <strong>Origin:</strong> {quickViewProduct.fabricSpecs.origin}</p>
-                    <p>• <strong>Cut:</strong> {quickViewProduct.fabricSpecs.fit}</p>
+                    <p>• <strong>Upper Leather:</strong> {quickViewProduct.shoeSpecs.leather}</p>
+                    <p>• <strong>Construction:</strong> {quickViewProduct.shoeSpecs.construction}</p>
+                    <p>• <strong>Outsole:</strong> {quickViewProduct.shoeSpecs.sole}</p>
+                    <p>• <strong>Provenance:</strong> {quickViewProduct.shoeSpecs.origin}</p>
                     <p className="pt-1 text-neutral-400">{quickViewProduct.description}</p>
                   </div>
                 )}
                 {activeTab === 'care' && (
                   <ul className="space-y-1 list-disc list-inside text-neutral-400">
-                    {quickViewProduct.fabricSpecs.care.map((c, i) => (
+                    {quickViewProduct.shoeSpecs.care.map((c, i) => (
                       <li key={i}>{c}</li>
                     ))}
                   </ul>
@@ -294,7 +296,7 @@ export const ProductDetailModal: React.FC = () => {
                     </div>
                     <div className="flex items-center gap-2 text-neutral-200">
                       <RotateCcw className="w-4 h-4 text-brand-gold stroke-[1.2]" />
-                      <span>14-Day Milan Atelier Returns &amp; Exchanges worldwide</span>
+                      <span>Free Worldwide Size Exchanges &amp; 14-Day Returns</span>
                     </div>
                   </div>
                 )}

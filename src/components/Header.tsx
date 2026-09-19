@@ -37,12 +37,12 @@ export const Header: React.FC = () => {
   };
 
   const navLinks = [
-    { label: 'All Collections', category: 'all' as const },
-    { label: 'Business Essentials', category: 'business' as const },
-    { label: 'Italian Polos', category: 'polos' as const },
-    { label: 'Casual Tailoring', category: 'casuals' as const },
-    { label: 'Bespoke Shirts', category: 'shirts' as const },
-    { label: 'Outerwear', category: 'outerwear' as const },
+    { label: 'All Footwear', category: 'all' as const },
+    { label: 'Artisanal Loafers', category: 'loafers' as const },
+    { label: 'Luxury Sneakers', category: 'sneakers' as const },
+    { label: 'Bespoke Oxfords', category: 'oxfords' as const },
+    { label: 'Tuscan Boots', category: 'boots' as const },
+    { label: 'Resort Slides', category: 'sandals' as const },
   ];
 
   return (
@@ -54,7 +54,7 @@ export const Header: React.FC = () => {
           Complimentary Express Shipping $150+
         </span>
         <span className="text-neutral-400 font-light hidden xs:inline tracking-widest">
-          14-Day Milan Atelier Returns
+          Free Worldwide Size Exchanges
         </span>
       </div>
 
@@ -73,7 +73,7 @@ export const Header: React.FC = () => {
 
             {/* Desktop Navigation Links */}
             <nav className="hidden lg:flex items-center gap-5 text-[11px] uppercase tracking-widest text-neutral-300 font-medium">
-              {navLinks.slice(1, 5).map((item) => (
+              {navLinks.slice(1, 6).map((item) => (
                 <button
                   key={item.category}
                   onClick={() => {
@@ -96,7 +96,7 @@ export const Header: React.FC = () => {
               MILANWORLD
             </span>
             <span className="block text-[8px] tracking-[0.35em] text-brand-gold font-sans font-medium uppercase mt-0.5">
-              Men's Atelier
+              Calzaturificio • Milano
             </span>
           </div>
 
@@ -147,7 +147,7 @@ export const Header: React.FC = () => {
               <div className="flex items-center justify-between pb-6 border-b border-neutral-800">
                 <div>
                   <div className="font-serif text-xl tracking-[0.2em] font-bold uppercase text-white">MILANWORLD</div>
-                  <div className="text-[9px] text-brand-gold tracking-[0.3em] font-sans font-medium uppercase mt-0.5">Sartoria Maschile • Milano</div>
+                  <div className="text-[9px] text-brand-gold tracking-[0.3em] font-sans font-medium uppercase mt-0.5">Calzaturificio • Artigiani Calzolai</div>
                 </div>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
@@ -159,7 +159,7 @@ export const Header: React.FC = () => {
 
               <div className="py-6 space-y-3">
                 <p className="text-[9px] uppercase tracking-widest text-brand-gold font-semibold px-2 mb-2">
-                  Atelier Curation
+                  Footwear Collections
                 </p>
                 {navLinks.map((item) => (
                   <button
@@ -183,9 +183,9 @@ export const Header: React.FC = () => {
             </div>
 
             <div className="pt-6 border-t border-neutral-800 text-xs text-neutral-400 space-y-2">
-              <p className="text-[10px] tracking-widest uppercase text-brand-gold">Milano • Roma • Paris</p>
-              <p className="text-[11px]">Direct Atelier Line: +91 7895499065</p>
-              <p className="text-[10px] text-neutral-500">© 2026 MILANWORLD Atelier S.P.A.</p>
+              <p className="text-[10px] tracking-widest uppercase text-brand-gold">Marche • Milano • Paris</p>
+              <p className="text-[11px]">Shoe Atelier Concierge: +91 7895499065</p>
+              <p className="text-[10px] text-neutral-500">© 2026 MILANWORLD Calzaturificio S.P.A.</p>
             </div>
           </div>
           <div className="flex-1" onClick={() => setMobileMenuOpen(false)}></div>
@@ -203,7 +203,7 @@ export const Header: React.FC = () => {
                   type="text"
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
-                  placeholder="Search polos, structured shirts, overshirts, casuals..."
+                  placeholder="Search loafers, Goodyear oxfords, sneakers, boots..."
                   className="w-full bg-transparent text-white placeholder-neutral-500 outline-none text-sm font-sans tracking-wide"
                   autoFocus
                 />
@@ -230,7 +230,7 @@ export const Header: React.FC = () => {
               {searchSuggestions.length > 0 ? (
                 <div className="space-y-2">
                   <p className="text-[9px] uppercase tracking-widest text-brand-gold font-semibold mb-2">
-                    Matching Atelier Pieces
+                    Matching Atelier Footwear
                   </p>
                   {searchSuggestions.map((prod) => (
                     <div
@@ -255,10 +255,10 @@ export const Header: React.FC = () => {
               ) : (
                 <div>
                   <p className="text-[9px] uppercase tracking-widest text-neutral-500 font-semibold mb-2">
-                    Popular Atelier Searches
+                    Popular Footwear Searches
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {['Ribbed Silk Polo', 'Structured Oxford', 'Linen Overshirt', 'Merino Wool', 'Stretch Pima'].map((s) => (
+                    {['Penny Loafer', 'Montenapoleone Oxford', 'Primo Court Sneaker', 'Chelsea Boot', 'Belgian Tassel', 'Wholecut'].map((s) => (
                       <button
                         key={s}
                         onClick={() => {

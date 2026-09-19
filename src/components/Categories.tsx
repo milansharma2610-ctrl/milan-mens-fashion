@@ -18,7 +18,7 @@ export const Categories: React.FC = () => {
         <div className="flex items-end justify-between mb-6">
           <div>
             <span className="text-[9px] uppercase tracking-widest text-brand-gold block mb-1">Curation</span>
-            <h2 className="font-serif text-2xl uppercase tracking-wider font-semibold">Featured Categories</h2>
+            <h2 className="font-serif text-2xl uppercase tracking-wider font-semibold">Featured Footwear</h2>
           </div>
           <button
             onClick={(e) => handleCategoryClick('all', e)}

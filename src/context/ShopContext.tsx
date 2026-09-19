@@ -1,12 +1,12 @@
 import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
-import { Product, CartItem, Category, FilterState, OrderConfirmation } from '../types';
+import { Product, CartItem, Category, ShoeSize, FilterState, OrderConfirmation } from '../types';
 import { PRODUCTS } from '../data/products';
 import confetti from 'canvas-confetti';
 
 interface ShopContextType {
   // Cart
   cart: CartItem[];
-  addToCart: (product: Product, size: 'S' | 'M' | 'L' | 'XL' | 'XXL', color: string, qty?: number) => void;
+  addToCart: (product: Product, size: ShoeSize, color: string, qty?: number) => void;
   removeFromCart: (productId: string, size: string, color: string) => void;
   updateQuantity: (productId: string, size: string, color: string, delta: number) => void;
   clearCart: () => void;
@@ -35,7 +35,7 @@ interface ShopContextType {
   // Filters & Search
   filters: FilterState;
   setCategory: (category: Category) => void;
-  toggleSizeFilter: (size: 'S' | 'M' | 'L' | 'XL' | 'XXL') => void;
+  toggleSizeFilter: (size: ShoeSize) => void;
   setPriceRange: (range: [number, number]) => void;
   setSortBy: (sort: 'featured' | 'newest' | 'price-low' | 'price-high' | 'rating') => void;
   setSearchQuery: (query: string) => void;
@@ -108,7 +108,7 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [filters, setFilters] = useState<FilterState>({
     category: 'all',
     selectedSizes: [],
-    priceRange: [100, 500],
+    priceRange: [150, 600],
     sortBy: 'featured',
     searchQuery: '',
   });
@@ -132,7 +132,7 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [wishlist]);
 
   // Cart operations
-  const addToCart = (product: Product, size: 'S' | 'M' | 'L' | 'XL' | 'XXL', color: string, qty = 1) => {
+  const addToCart = (product: Product, size: ShoeSize, color: string, qty = 1) => {
     setCart((prev) => {
       const existingIndex = prev.findIndex(
         (item) => item.product.id === product.id && item.selectedSize === size && item.selectedColor === color
@@ -248,7 +248,7 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setFilters((prev) => ({ ...prev, category }));
   };
 
-  const toggleSizeFilter = (size: 'S' | 'M' | 'L' | 'XL' | 'XXL') => {
+  const toggleSizeFilter = (size: ShoeSize) => {
     setFilters((prev) => {
       const exists = prev.selectedSizes.includes(size);
       return {
@@ -274,7 +274,7 @@ export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setFilters({
       category: 'all',
       selectedSizes: [],
-      priceRange: [100, 500],
+      priceRange: [150, 600],
       sortBy: 'featured',
       searchQuery: '',
     });

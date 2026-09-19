@@ -46,7 +46,7 @@ export const TrackOrderModal: React.FC = () => {
               required
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="e.g. MMF-849201 or 7895499065"
+              placeholder="e.g. MW-849201 or 7895499065"
               className="flex-1 bg-brand-900 border border-brand-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-zinc-500 outline-none focus:border-brand-gold font-mono uppercase"
             />
             <button
@@ -73,7 +73,7 @@ export const TrackOrderModal: React.FC = () => {
               <div className="flex items-start gap-3 text-emerald-400">
                 <CheckCircle2 className="w-4 h-4 mt-0.5 shrink-0" />
                 <div>
-                  <p className="font-bold text-white">Order Confirmed & Quality Checked</p>
+                  <p className="font-bold text-white">Footwear Inspected, Conditioned &amp; Packed</p>
                   <p className="text-[11px] text-zinc-400">Hub: Rajnagar Extension, Ghaziabad</p>
                 </div>
               </div>

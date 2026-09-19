@@ -1,53 +1,44 @@
-# Milan Men's Fashion — E-Commerce Web Platform
+# MILANWORLD — Calzaturificio d'Arte (Milano)
 **Domain**: [milanworld.online](https://milanworld.online)  
-**Tagline**: *Redefining Urban & Streetwear Aesthetics*  
+**Tagline**: *Handcrafted Italian Footwear & Goodyear-Welted Longevity*  
 **Business Contact**:
 - **Phone**: +91 7895499065
 - **Email**: milansharma2610@gmail.com
-- **Dispatch Hub**: Rajnagar Extension, Ghaziabad, Uttar Pradesh, India
+- **Atelier Hub**: Rajnagar Extension, Ghaziabad, Uttar Pradesh, India / Montegranaro, Marche, Italy
 
 ---
 
-## ⚡ Features & Capabilities
+## 👞 Features & Capabilities
 
-1. **Brand Aesthetic & Luxury Dark Theme**:
-   - Modern luxury streetwear palette (Jet Black `#0A0A0A`, Deep Charcoal, Soft Off-white, and Gold `#D4AF37` accent).
-   - High GSM streetwear imagery (Heavyweight Hoodies, Acid Wash Graphic Tees, Tactical Cargos, Varsity Jackets).
+1. **Brand Aesthetic & Italian Cordwainer Identity**:
+   - Quiet luxury palette: Jet Obsidian Black (`#0C0C0C`), Hand-Burnished Patina (`#8A6240`), Brushed Gold (`#D4AF37`), and Tuscan Sand (`#F2EFE9`).
+   - High-resolution editorial shoe photography (Tuscan Reverse Suede Loafers, French Boxcalf Oxfords, Margom-Sole Court Sneakers, Waxed Roughout Chelsea Boots, Wholecuts, and Slides).
 
-2. **Global Navigation & Real-Time Predictive Search**:
-   - Announcement banner featuring discount coupon `MILAN10` and free express shipping threshold (`₹1,499`).
-   - Autocomplete predictive search modal with keyboard shortcuts and trending tags.
+2. **Global Navigation & Footwear Discovery**:
+   - Announcement ticker highlighting complimentary worldwide shoe delivery, cordwainer sizing exchange, and code `MILAN10`.
+   - Autocomplete predictive search with shoe style recommendations (Loafers, Belgian Loafers, Oxfords, Chelsea Boots, Margom Sneakers, Wholecut Tuxedo shoes).
    - Dynamic Cart counter and Wishlist counter.
 
-3. **Shop & Refine Filtering System**:
-   - Multi-category filtering: *All Vault, Hoodies & Sweatshirts, Oversized Tees, Bottomwear, Jackets, Accessories*.
-   - Size pills (S, M, L, XL, XXL) and interactive price range slider.
-   - Sorting options: *Featured, Newest, Price: Low to High, Price: High to Low, Highest Rated*.
+3. **Curated Footwear Catalog & Precision Sizing Filters**:
+   - Footwear category tabs: *All Footwear, Artisanal Loafers, Luxury Sneakers, Bespoke Dress Shoes, Tuscan Boots, Handcrafted Sandals*.
+   - International Shoe Size filter pills (`US 7`, `US 8`, `US 8.5`, `US 9`, `US 9.5`, `US 10`, `US 10.5`, `US 11`, `US 12`).
+   - Price range filter ($150 – $600) and multi-attribute sorting.
 
-4. **Product Detail View (PDP Modal)**:
-   - Multi-angle thumbnail image gallery.
-   - Interactive size selection and live stock status alert.
-   - Streetwear Size Chart modal with Inches / CM toggle.
-   - Accordion specs: 420 GSM French Terry details, wash care guidelines, and Ghaziabad dispatch guarantee.
-   - Sticky "Add to Bag" & "Instant Buy Now" actions.
+4. **Product Detail Experience (Footwear PDP Modal)**:
+   - High-definition multi-angle gallery with zoom on stitching and welt grooves.
+   - Interactive shoe size selector with real-time stock indicator.
+   - Comprehensive **International Shoe Size Matrix** (US, UK, EU, Foot Length in CM & Inches, Heel-to-Toe measurement guide, and instep width advice).
+   - Cordwainer construction tabs: Full-Grain Leather Provenance, Goodyear 270° / Blake Welting details, and Saphir Médaille d'Or maintenance guidelines.
+   - Sticky "Acquire Pair" and instant WhatsApp Concierge ordering.
 
-5. **Slide-over Flyout Cart Drawer**:
-   - Free shipping dynamic progress bar (threshold: ₹1,499).
-   - Quantity increments/decrements with real-time recalculation.
+5. **Slide-over Atelier Cart Drawer & Direct Checkout**:
+   - Complimentary shoe tree and shipping progress indicator.
+   - Selected shoe size and colorway tracking.
    - Coupon verification (`MILAN10` gives instant 10% OFF with confetti).
-   - Delivery instructions / gift notes field.
+   - Multi-tier checkout supporting Cash on Delivery, Card, and **1-Click WhatsApp Concierge Order** directly with full shoe specifications to `+91 7895499065`.
 
-6. **Checkout & Order Confirmation Flow**:
-   - Address input form with Indian state & pincode support.
-   - Payment method choice: Instant UPI / QR, Cash on Delivery (COD), Card & Netbanking.
-   - Order confirmation receipt with unique Order ID and **1-Click WhatsApp Order Receipt** directly to `+91 7895499065`.
-
-7. **Social Proof & Customer Care**:
-   - Verified 5-star customer testimonials.
-   - Instagram Community Lookbook (`#MilanMen`).
-   - Shipment tracking simulation.
-   - Floating WhatsApp Support button.
-   - Mobile bottom navigation bar.
+6. **Standalone Single-File Version**:
+   - Includes `milan-website-standalone.html` for immediate zero-dependency preview in any browser.
 
 ---
 

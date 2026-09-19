@@ -72,16 +72,16 @@ export const TrustAndReviews: React.FC = () => {
             Private Membership
           </span>
           <h3 className="font-serif text-2xl sm:text-3xl uppercase tracking-wider font-light mb-2">
-            Join The Atelier Club
+            Join The Cordwainer Club
           </h3>
           <p className="text-xs text-stone-400 font-light mb-6 font-sans">
-            Receive private runway invitations, bespoke release previews, and curated styling notes.
+            Receive private vault allocations, limited footwear drop previews, and artisanal leather care guides.
           </p>
 
           {subscribed ? (
             <div className="p-4 bg-neutral-900 border border-brand-gold/40 text-xs text-brand-sand">
-              <p className="font-semibold uppercase tracking-wider">Welcome to the Atelier Club.</p>
-              <p className="text-[11px] text-neutral-400 mt-1">Your styling dispatch has been confirmed.</p>
+              <p className="font-semibold uppercase tracking-wider">Welcome to the Cordwainer Club.</p>
+              <p className="text-[11px] text-neutral-400 mt-1">Your footwear preview dispatch has been confirmed.</p>
             </div>
           ) : (
             <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2 font-sans">

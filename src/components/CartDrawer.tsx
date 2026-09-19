@@ -169,7 +169,7 @@ export const CartDrawer: React.FC = () => {
                 Your Atelier Bag is Empty
               </h4>
               <p className="text-xs text-neutral-400 max-w-xs mx-auto font-light">
-                Discover Italian knit polos, structured poplins, and Biella wool field layers.
+                Discover handcrafted Goodyear-welted dress shoes, artisanal Tuscan loafers, and luxury sneakers.
               </p>
               <button
                 onClick={() => {

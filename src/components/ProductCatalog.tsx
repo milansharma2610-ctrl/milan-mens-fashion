@@ -19,17 +19,17 @@ export const ProductCatalog: React.FC = () => {
   const [showFiltersDrawer, setShowFiltersDrawer] = useState(false);
 
   const categories: { id: Category; label: string }[] = [
-    { id: 'all', label: 'All Collections' },
-    { id: 'business', label: 'Business Essentials' },
-    { id: 'polos', label: 'Italian Polos' },
-    { id: 'casuals', label: 'Casuals' },
-    { id: 'shirts', label: 'Bespoke Shirts' },
-    { id: 'outerwear', label: 'Field & Outerwear' },
+    { id: 'all', label: 'All Footwear' },
+    { id: 'loafers', label: 'Artisanal Loafers' },
+    { id: 'sneakers', label: 'Luxury Sneakers' },
+    { id: 'oxfords', label: 'Bespoke Oxfords' },
+    { id: 'boots', label: 'Tuscan Boots' },
+    { id: 'sandals', label: 'Resort Slides' },
   ];
 
   const handleQuickAdd = (product: any, e: React.MouseEvent) => {
     e.stopPropagation();
-    addToCart(product, 'M', product.colors[0]?.name || 'Standard', 1);
+    addToCart(product, product.sizes[0] || 'US 9', product.colors[0]?.name || 'Standard', 1);
     setAddedId(product.id);
     setTimeout(() => setAddedId(null), 1200);
   };
@@ -41,10 +41,10 @@ export const ProductCatalog: React.FC = () => {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-3">
           <div>
             <span className="text-[9px] uppercase tracking-widest text-neutral-500 block mb-1">
-              Wardrobe Staples
+              Cordwainer Collection
             </span>
             <h2 className="font-serif text-2xl sm:text-3xl uppercase tracking-wider font-bold text-black">
-              {filters.category === 'all' ? 'Best Sellers & Vault' : categories.find(c => c.id === filters.category)?.label}
+              {filters.category === 'all' ? 'Footwear Icons & Vault' : categories.find(c => c.id === filters.category)?.label}
             </h2>
           </div>
 
@@ -58,7 +58,7 @@ export const ProductCatalog: React.FC = () => {
               <span>Filter & Sort</span>
             </button>
             <span className="text-xs text-neutral-500 tracking-wider">
-              ({filteredProducts.length} pieces)
+              ({filteredProducts.length} models)
             </span>
           </div>
         </div>
@@ -68,7 +68,7 @@ export const ProductCatalog: React.FC = () => {
           <div className="mb-6 p-4 bg-white border border-neutral-200 animate-slide-up space-y-4">
             <div>
               <span className="text-[10px] uppercase tracking-widest font-semibold text-neutral-600 block mb-2">
-                Categories
+                Footwear Category
               </span>
               <div className="flex flex-wrap gap-2">
                 {categories.map((cat) => (
@@ -88,15 +88,15 @@ export const ProductCatalog: React.FC = () => {
             </div>
 
             <div className="flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-neutral-100">
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-neutral-500 uppercase tracking-wider">Size:</span>
-                {(['S', 'M', 'L', 'XL', 'XXL'] as const).map((s) => {
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-xs text-neutral-500 uppercase tracking-wider">Shoe Size:</span>
+                {(['US 7', 'US 7.5', 'US 8', 'US 8.5', 'US 9', 'US 9.5', 'US 10', 'US 10.5', 'US 11', 'US 12'] as const).map((s) => {
                   const active = filters.selectedSizes.includes(s);
                   return (
                     <button
                       key={s}
                       onClick={() => toggleSizeFilter(s)}
-                      className={`w-7 h-7 text-xs font-semibold border ${
+                      className={`px-2 py-1 text-xs font-semibold border ${
                         active
                           ? 'bg-brand-gold text-black border-brand-gold font-bold'
                           : 'bg-neutral-50 text-neutral-600 border-neutral-200'

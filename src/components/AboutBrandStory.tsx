@@ -7,29 +7,32 @@ export const AboutBrandStory: React.FC = () => {
         {/* Visual Collage / Atelier Image */}
         <div className="lg:col-span-7 relative w-full aspect-[4/3] overflow-hidden bg-stone-200">
           <img
-            alt="Master tailor at work"
+            alt="Master Italian Cordwainer shaping shoe at workbench"
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgoIc9O-REBoBS3ieEbBDrjUho0e3NQJIJ_YqfLP8xsNqW8N6ginzzCfcdfuHePGCvB9089EiUQZc1mlH28TIMMcSNbhgZnucM6Q_cahRno2rgE5LnueRAsOkIABIn2cGACHw6Ht1lomlKaayRztdq_QzJ85GASlFb3MlPZ1Dgm7jBz44rMX_-T6DrRlMRueOzjIa2EvCGGGhANXYeE2Po9PakKmwwIRyZro46SuG_WS4kC8-aUzRj"
+            src="https://images.unsplash.com/photo-1449505278894-297fdb3edbc1?auto=format&fit=crop&w=1200&q=80"
           />
         </div>
 
         {/* Narrative Content */}
         <div className="lg:col-span-5 space-y-4">
           <span className="text-[9px] uppercase tracking-[0.25em] text-stone-500 font-semibold font-sans">
-            Our Story
+            Cordwainer Provenance
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl uppercase tracking-wider font-bold text-black">
             About Milanworld
           </h2>
           <p className="text-xs sm:text-sm text-stone-600 font-light leading-relaxed font-sans">
-            Milanworld is more than just clothing; it is a philosophy of measured confidence. Founded in the heart of Via Montenapoleone, we curate architectural silhouettes for the modern man who values quality, subtlety, and lasting presence.
+            Milanworld Calzaturificio was founded on an enduring conviction: true distinction begins from the ground up. Rooted in the artisanal valleys of Montegranaro and designed in Via Montenapoleone, our atelier unites multi-generational cordwainer mastery with modern anatomical comfort.
+          </p>
+          <p className="text-xs sm:text-sm text-stone-600 font-light leading-relaxed font-sans">
+            Every wooden shoe last is sculpted for ergonomic balance, every hide of French boxcalf and Tuscan reverse suede is hand-graded for grain density, and every Goodyear welt is engineered to be resoled for decades.
           </p>
           <div className="pt-2">
             <a
               className="inline-block border-b border-black text-xs font-semibold uppercase tracking-widest pb-1 hover:text-brand-gold hover:border-brand-gold transition-colors font-sans"
               href="#catalog"
             >
-              Discover Our Journey →
+              Discover Our Footwear Collection →
             </a>
           </div>
 
@@ -38,19 +41,19 @@ export const AboutBrandStory: React.FC = () => {
             <div className="p-3 bg-stone-50 border border-stone-100">
               <span className="block text-brand-gold text-lg mb-0.5">✦</span>
               <span className="block text-[9px] font-semibold uppercase tracking-wider text-black">
-                Milan Design
+                Marche Lasts
               </span>
             </div>
             <div className="p-3 bg-stone-50 border border-stone-100">
               <span className="block text-brand-gold text-lg mb-0.5">🛡</span>
               <span className="block text-[9px] font-semibold uppercase tracking-wider text-black">
-                Built to Last
+                Re-Soleable
               </span>
             </div>
             <div className="p-3 bg-stone-50 border border-stone-100">
               <span className="block text-brand-gold text-lg mb-0.5">★</span>
               <span className="block text-[9px] font-semibold uppercase tracking-wider text-black">
-                Slow Luxury
+                Full-Grain Leathers
               </span>
             </div>
           </div>

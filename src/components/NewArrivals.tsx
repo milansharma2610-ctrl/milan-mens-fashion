@@ -13,9 +13,9 @@ export const NewArrivals: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex items-end justify-between mb-6">
           <div>
-            <span className="text-[9px] uppercase tracking-widest text-stone-500 block mb-1">Just Dropped</span>
+            <span className="text-[9px] uppercase tracking-widest text-stone-500 block mb-1">SS-26 Drops</span>
             <h2 className="font-serif text-2xl sm:text-3xl uppercase tracking-wider font-bold text-black">
-              New Arrivals
+              New Footwear Arrivals
             </h2>
           </div>
           <a

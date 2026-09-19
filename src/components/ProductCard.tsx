@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Product } from '../types';
+import { Product, ShoeSize } from '../types';
 import { useShop } from '../context/ShopContext';
 import { Heart, ShoppingBag, Eye, Star, Flame, Check } from 'lucide-react';
 
@@ -10,8 +10,8 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { addToCart, isInWishlist, toggleWishlist, setQuickViewProduct } = useShop();
 
-  const [selectedSize, setSelectedSize] = useState<'S' | 'M' | 'L' | 'XL' | 'XXL'>(
-    product.sizes[0] || 'M'
+  const [selectedSize, setSelectedSize] = useState<ShoeSize>(
+    product.sizes[0] || 'US 9'
   );
   const selectedColor = product.colors[0]?.name || 'Standard';
   const [isHovered, setIsHovered] = useState(false);
@@ -119,7 +119,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               <span className="text-[11px] text-zinc-500">({product.reviewCount})</span>
             </div>
             <span className="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-brand-850 text-zinc-400 border border-brand-800 truncate max-w-[120px]">
-              {product.fabricSpecs.origin.split(' ')[0]}
+              {product.shoeSpecs.origin.split(',')[0]}
             </span>
           </div>
 
@@ -153,8 +153,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {/* Size Selection Pills */}
         <div className="space-y-2 pt-1 border-t border-brand-800/60">
           <div className="flex items-center justify-between text-[11px] text-zinc-400">
-            <span>Select Size:</span>
-            <span className="text-zinc-500 font-mono">Fit: {product.fabricSpecs.fit.split(' ')[0]}</span>
+            <span>Select Shoe Size:</span>
+            <span className="text-zinc-500 font-mono">{product.shoeSpecs.construction.split(' ')[0]}</span>
           </div>
           <div className="flex flex-wrap gap-1.5">
             {product.sizes.map((size) => {
@@ -164,7 +164,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                   key={size}
                   type="button"
                   onClick={() => setSelectedSize(size)}
-                  className={`w-7 h-7 text-xs font-semibold rounded-lg flex items-center justify-center transition-all ${
+                  className={`px-2 py-1 text-[11px] font-semibold rounded-lg flex items-center justify-center transition-all ${
                     isSelected
                       ? 'bg-brand-gold text-brand-950 font-extrabold shadow-sm'
                       : 'bg-brand-850 hover:bg-brand-800 text-zinc-300 border border-brand-700/60'
