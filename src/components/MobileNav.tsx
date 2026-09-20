@@ -1,6 +1,6 @@
 import React from 'react';
 import { useShop } from '../context/ShopContext';
-import { Home, Compass, Heart, ShoppingBag, Sparkles } from 'lucide-react';
+import { Home, Compass, Heart, ShoppingBag } from 'lucide-react';
 
 export const MobileNav: React.FC = () => {
   const { cartCount, wishlist, setIsCartOpen, setIsWishlistOpen, setCategory } = useShop();
@@ -14,34 +14,22 @@ export const MobileNav: React.FC = () => {
     document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleServices = () => {
-    document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <div className="fixed bottom-0 inset-x-0 z-40 sm:hidden bg-brand-black/95 backdrop-blur-lg border-t border-neutral-800 px-3 py-2 flex items-center justify-around shadow-2xl font-sans">
+    <div className="fixed bottom-0 inset-x-0 z-40 sm:hidden bg-brand-black/95 backdrop-blur-lg border-t border-neutral-800 px-4 py-2 flex items-center justify-around shadow-2xl font-sans">
       <button
         onClick={handleHome}
         className="flex flex-col items-center gap-1 text-neutral-400 hover:text-white py-1 transition-colors"
       >
-        <Home className="w-4 h-4 stroke-[1.2]" />
-        <span className="text-[9px] uppercase font-medium tracking-wider">Home</span>
+        <Home className="w-5 h-5 stroke-[1.2]" />
+        <span className="text-[10px] uppercase font-medium tracking-wider">Home</span>
       </button>
 
       <button
         onClick={handleCatalog}
         className="flex flex-col items-center gap-1 text-neutral-400 hover:text-white py-1 transition-colors"
       >
-        <Compass className="w-4 h-4 stroke-[1.2]" />
-        <span className="text-[9px] uppercase font-medium tracking-wider">Shoes</span>
-      </button>
-
-      <button
-        onClick={handleServices}
-        className="flex flex-col items-center gap-1 text-neutral-400 hover:text-brand-gold py-1 transition-colors"
-      >
-        <Sparkles className="w-4 h-4 text-brand-gold stroke-[1.2]" />
-        <span className="text-[9px] uppercase font-medium tracking-wider text-brand-gold">Services</span>
+        <Compass className="w-5 h-5 stroke-[1.2]" />
+        <span className="text-[10px] uppercase font-medium tracking-wider">Shoes</span>
       </button>
 
       <button

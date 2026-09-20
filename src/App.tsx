@@ -6,7 +6,6 @@ import { Categories } from './components/Categories';
 import { NewArrivals } from './components/NewArrivals';
 import { EditorialInterstitial } from './components/EditorialInterstitial';
 import { ProductCatalog } from './components/ProductCatalog';
-import { AtelierServices } from './components/AtelierServices';
 import { BrandPillars } from './components/BrandPillars';
 import { AboutBrandStory } from './components/AboutBrandStory';
 import { TrustAndReviews } from './components/TrustAndReviews';
@@ -34,7 +33,6 @@ export const App: React.FC = () => {
           <NewArrivals />
           <EditorialInterstitial />
           <ProductCatalog />
-          <AtelierServices />
           <BrandPillars />
           <AboutBrandStory />
           <TrustAndReviews />
