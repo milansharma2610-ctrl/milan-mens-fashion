@@ -87,6 +87,15 @@ export const Header: React.FC = () => {
                   {item.label}
                 </button>
               ))}
+              <button
+                onClick={() => {
+                  document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="hover:text-brand-gold text-brand-sand transition-colors border-l border-neutral-700 pl-4 flex items-center gap-1.5 font-semibold"
+              >
+                <span>Services Menu</span>
+                <span className="text-[8px] bg-brand-gold text-black px-1 py-0.5 font-bold uppercase tracking-wider">Atelier</span>
+              </button>
             </nav>
           </div>
 
@@ -179,6 +188,69 @@ export const Header: React.FC = () => {
                     <ArrowRight className="w-3.5 h-3.5 opacity-60" />
                   </button>
                 ))}
+              </div>
+
+              {/* Atelier Services Menu in Drawer */}
+              <div className="py-4 border-t border-neutral-800 space-y-2">
+                <p className="text-[9px] uppercase tracking-widest text-brand-gold font-semibold px-2 mb-2">
+                  Atelier Services
+                </p>
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="w-full flex items-center justify-between px-3 py-2 rounded text-xs uppercase tracking-widest font-medium text-neutral-200 hover:bg-neutral-900 transition-colors border border-neutral-800/80"
+                >
+                  <span className="flex items-center gap-2">
+                    <span className="text-brand-gold">✦</span>
+                    <span>All Services Menu</span>
+                  </span>
+                  <span className="text-[9px] text-brand-gold font-mono">View All →</span>
+                </button>
+
+                <div className="grid grid-cols-2 gap-1.5 pt-1">
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="p-2 bg-neutral-900/60 border border-neutral-800 text-left hover:border-brand-gold/60 transition-colors"
+                  >
+                    <span className="text-[9px] text-brand-gold font-mono block">Recrafting</span>
+                    <span className="text-[11px] text-white font-medium block mt-0.5">Resoling</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="p-2 bg-neutral-900/60 border border-neutral-800 text-left hover:border-brand-gold/60 transition-colors"
+                  >
+                    <span className="text-[9px] text-brand-gold font-mono block">Glacage</span>
+                    <span className="text-[11px] text-white font-medium block mt-0.5">Patina Studio</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="p-2 bg-neutral-900/60 border border-neutral-800 text-left hover:border-brand-gold/60 transition-colors"
+                  >
+                    <span className="text-[9px] text-brand-gold font-mono block">Custom</span>
+                    <span className="text-[11px] text-white font-medium block mt-0.5">Su Misura</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="p-2 bg-neutral-900/60 border border-neutral-800 text-left hover:border-brand-gold/60 transition-colors"
+                  >
+                    <span className="text-[9px] text-brand-gold font-mono block">Fitting</span>
+                    <span className="text-[11px] text-white font-medium block mt-0.5">Concierge</span>
+                  </button>
+                </div>
               </div>
             </div>
 

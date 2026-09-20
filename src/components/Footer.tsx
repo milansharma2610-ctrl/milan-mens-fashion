@@ -72,7 +72,7 @@ export const Footer: React.FC = () => {
               <li><button onClick={() => setIsTrackOrderOpen(true)} className="hover:text-white transition-colors">Track Footwear Shipment</button></li>
               <li><button onClick={() => setIsSizeGuideOpen(true)} className="hover:text-white transition-colors">Footwear Sizing Matrix</button></li>
               <li><span className="text-neutral-500">Free Worldwide Size Exchanges</span></li>
-              <li><span className="text-neutral-500">Re-Crafting &amp; Resoling Atelier</span></li>
+              <li><button onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-brand-gold text-brand-sand transition-colors font-medium">Atelier Services Menu →</button></li>
               <li><a href="tel:+917895499065" className="hover:text-brand-gold transition-colors">Contact Shoe Concierge</a></li>
             </ul>
           </div>

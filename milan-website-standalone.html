@@ -56,10 +56,19 @@
 
   <!-- BEGIN: MainHeader -->
   <header class="sticky top-0 z-50 bg-[#0c0c0c]/95 backdrop-blur-md text-white border-b border-white/10 px-4 py-3.5 transition-all" data-purpose="sticky-mobile-nav">
-    <div class="flex items-center justify-between max-w-7xl mx-auto">
-      <button aria-label="Open Navigation Menu" class="p-1 -ml-1 text-white hover:text-brand-gold transition-colors focus:outline-none">
-        <svg class="w-6 h-6 stroke-[1.2]" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-      </button>
+      <div class="flex items-center gap-6">
+        <button aria-label="Open Navigation Menu" onclick="document.getElementById('services')?.scrollIntoView({behavior:'smooth'})" class="p-1 -ml-1 text-white hover:text-brand-gold transition-colors focus:outline-none">
+          <svg class="w-6 h-6 stroke-[1.2]" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
+        <nav class="hidden lg:flex items-center gap-6 text-[11px] uppercase tracking-widest text-neutral-300 font-medium">
+          <a href="#catalog" class="hover:text-brand-gold transition-colors">Footwear Collection</a>
+          <a href="#services" class="hover:text-brand-gold text-brand-sand transition-colors flex items-center gap-1.5 font-semibold">
+            <span>Services Menu</span>
+            <span class="text-[8px] bg-brand-gold text-black px-1.5 py-0.5 font-bold uppercase tracking-wider">Atelier</span>
+          </a>
+          <a href="#about-story" class="hover:text-brand-gold transition-colors">Heritage</a>
+        </nav>
+      </div>
       <div class="text-center">
         <a class="inline-block tracking-[0.28em] font-serif text-xl sm:text-2xl font-bold uppercase text-white" href="#">
           MILANWORLD
@@ -407,6 +416,162 @@
     </section>
     <!-- END: BestSellersSection -->
 
+    <!-- BEGIN: AtelierServices -->
+    <section id="services" class="py-16 px-4 sm:px-8 bg-[#111111] text-white border-t border-neutral-800" data-purpose="atelier-services">
+      <div class="max-w-7xl mx-auto">
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-neutral-800">
+          <div>
+            <span class="text-[10px] uppercase tracking-[0.3em] text-brand-gold font-semibold block mb-2 font-mono">
+              Cura &amp; Manutenzione • Atelier Services
+            </span>
+            <h2 class="font-serif text-3xl sm:text-4xl uppercase tracking-wider font-light">
+              Master Cordwainer <span class="font-bold">Services Menu</span>
+            </h2>
+          </div>
+          <p class="text-xs text-neutral-400 font-light max-w-md mt-4 md:mt-0 leading-relaxed">
+            True luxury is built to endure for a lifetime. Explore our atelier's dedicated resoling, bespoke patina, and personalized cordwainer fitting services.
+          </p>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          <!-- Service 1: Resoling -->
+          <div class="bg-[#181818] border border-neutral-800 p-6 sm:p-8 flex flex-col justify-between hover:border-brand-gold transition-colors duration-300 group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="p-3 bg-neutral-900 border border-neutral-800 text-brand-gold group-hover:border-brand-gold/60 transition-colors">
+                  <svg class="w-6 h-6 stroke-[1.4]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.725 1.725l1.725-1.725" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="text-right font-mono">
+                  <span class="text-xs text-brand-gold font-semibold block">From $120</span>
+                  <span class="text-[10px] text-neutral-500 block mt-0.5">⏱ 2 - 3 Weeks</span>
+                </div>
+              </div>
+              <span class="text-[9px] uppercase tracking-widest text-brand-gold/80 font-mono block mb-1">Full Recrafting Atelier</span>
+              <h3 class="font-serif text-xl font-semibold uppercase tracking-wider text-white mb-3">Master Goodyear &amp; Blake Resoling</h3>
+              <p class="text-xs text-neutral-400 font-light leading-relaxed mb-6">
+                Complete deconstruction down to the insole. Our Montegranaro artisans replace the worn outsole with oak-bark tanned leather, renew the cork cushioning bed, re-stitch the welt, and finish with hand-burnished edges.
+              </p>
+              <div class="space-y-2 mb-6 pt-4 border-t border-neutral-800/80 text-[11px] text-neutral-300 font-light">
+                <div class="flex items-center gap-2"><span class="text-brand-gold">✓</span> Original Marche wooden lasting</div>
+                <div class="flex items-center gap-2"><span class="text-brand-gold">✓</span> Natural cork filler renewal</div>
+                <div class="flex items-center gap-2"><span class="text-brand-gold">✓</span> Brass nail heel reenforcement</div>
+                <div class="flex items-center gap-2"><span class="text-brand-gold">✓</span> Full upper deep nourishing treatment</div>
+              </div>
+            </div>
+            <a href="https://wa.me/917895499065?text=Hello%20Milanworld%20Atelier,%20I%20would%20like%20to%20inquire%20about%20Master%20Resoling%20for%20my%20shoes." target="_blank" class="w-full py-3 px-4 bg-neutral-900 hover:bg-brand-gold text-white hover:text-black text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 border border-neutral-700 hover:border-brand-gold transition-all duration-300">
+              <span>Book Resoling Service →</span>
+            </a>
+          </div>
+
+          <!-- Service 2: Patina Studio -->
+          <div class="bg-[#181818] border border-neutral-800 p-6 sm:p-8 flex flex-col justify-between hover:border-brand-gold transition-colors duration-300 group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="p-3 bg-neutral-900 border border-neutral-800 text-brand-gold group-hover:border-brand-gold/60 transition-colors">
+                  <svg class="w-6 h-6 stroke-[1.4]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="text-right font-mono">
+                  <span class="text-xs text-brand-gold font-semibold block">From $65</span>
+                  <span class="text-[10px] text-neutral-500 block mt-0.5">⏱ 3 - 5 Days</span>
+                </div>
+              </div>
+              <span class="text-[9px] uppercase tracking-widest text-brand-gold/80 font-mono block mb-1">Saphir Médaille d'Or 1925</span>
+              <h3 class="font-serif text-xl font-semibold uppercase tracking-wider text-white mb-3">Patina Studio &amp; Mirror Glaçage</h3>
+              <p class="text-xs text-neutral-400 font-light leading-relaxed mb-6">
+                Multi-stage hand-rubbed museum patina blending and high-gloss toe mirror shine. We apply natural beeswax, carnauba emulsions, and mineral pigments to achieve deep optical depth and glass-like reflection.
+              </p>
+              <div class="space-y-2 mb-6 pt-4 border-t border-neutral-800/80 text-[11px] text-neutral-300 font-light">
+                <div class="flex items-center gap-2"><span class="text-brand-gold">✓</span> Hand-applied museum patina shades</div>
+                <div class="flex items-center gap-2"><span class="text-brand-gold">✓</span> Ice-water &amp; beeswax toe mirror polish</div>
+                <div class="flex items-center gap-2"><span class="text-brand-gold">✓</span> Edge dressing &amp; welt waxing</div>
+                <div class="flex items-center gap-2"><span class="text-brand-gold">✓</span> Complete lining sterilization &amp; conditioning</div>
+              </div>
+            </div>
+            <a href="https://wa.me/917895499065?text=Hello%20Milanworld%20Atelier,%20I%20would%20like%20to%20book%20a%20Patina%20&%20Mirror%20Glaçage%20treatment." target="_blank" class="w-full py-3 px-4 bg-neutral-900 hover:bg-brand-gold text-white hover:text-black text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 border border-neutral-700 hover:border-brand-gold transition-all duration-300">
+              <span>Book Glaçage Treatment →</span>
+            </a>
+          </div>
+
+          <!-- Service 3: Su Misura -->
+          <div class="bg-[#181818] border border-neutral-800 p-6 sm:p-8 flex flex-col justify-between hover:border-brand-gold transition-colors duration-300 group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="p-3 bg-neutral-900 border border-neutral-800 text-brand-gold group-hover:border-brand-gold/60 transition-colors">
+                  <svg class="w-6 h-6 stroke-[1.4]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="text-right font-mono">
+                  <span class="text-xs text-brand-gold font-semibold block">Bespoke Quote</span>
+                  <span class="text-[10px] text-neutral-500 block mt-0.5">⏱ 6 - 8 Weeks</span>
+                </div>
+              </div>
+              <span class="text-[9px] uppercase tracking-widest text-brand-gold/80 font-mono block mb-1">Bespoke Morphological Lasting</span>
+              <h3 class="font-serif text-xl font-semibold uppercase tracking-wider text-white mb-3">Su Misura (Made-to-Order Last)</h3>
+              <p class="text-xs text-neutral-400 font-light leading-relaxed mb-6">
+                Commission an entirely bespoke pair shaped exclusively for your feet. Our master cordwainer carves a personal wooden last, followed by hand-cutting pristine French boxcalf or reverse suede to your silhouette.
+              </p>
+              <div class="space-y-2 mb-6 pt-4 border-t border-neutral-800/80 text-[11px] text-neutral-300 font-light">
+                <div class="flex items-center gap-2"><span class="text-brand-gold">✓</span> Custom carved beechwood lasts</div>
+                <div class="flex items-center gap-2"><span class="text-brand-gold">✓</span> Personal leather &amp; lining selection</div>
+                <div class="flex items-center gap-2"><span class="text-brand-gold">✓</span> Violin waist sculpted soles</div>
+                <div class="flex items-center gap-2"><span class="text-brand-gold">✓</span> Personalized initials brass nail stamp</div>
+              </div>
+            </div>
+            <a href="https://wa.me/917895499065?text=Hello%20Milanworld%20Atelier,%20I%20would%20like%20to%20inquire%20about%20commissioning%20a%20Su%20Misura%20bespoke%20pair." target="_blank" class="w-full py-3 px-4 bg-neutral-900 hover:bg-brand-gold text-white hover:text-black text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 border border-neutral-700 hover:border-brand-gold transition-all duration-300">
+              <span>Inquire Su Misura →</span>
+            </a>
+          </div>
+
+          <!-- Service 4: Sizing Concierge -->
+          <div class="bg-[#181818] border border-neutral-800 p-6 sm:p-8 flex flex-col justify-between hover:border-brand-gold transition-colors duration-300 group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="p-3 bg-neutral-900 border border-neutral-800 text-brand-gold group-hover:border-brand-gold/60 transition-colors">
+                  <svg class="w-6 h-6 stroke-[1.4]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="text-right font-mono">
+                  <span class="text-xs text-brand-gold font-semibold block">Complimentary</span>
+                  <span class="text-[10px] text-neutral-500 block mt-0.5">⏱ Instant / Same-Day</span>
+                </div>
+              </div>
+              <span class="text-[9px] uppercase tracking-widest text-brand-gold/80 font-mono block mb-1">1-on-1 Cordwainer Fit Consultation</span>
+              <h3 class="font-serif text-xl font-semibold uppercase tracking-wider text-white mb-3">White-Glove Fit &amp; Sizing Concierge</h3>
+              <p class="text-xs text-neutral-400 font-light leading-relaxed mb-6">
+                Unsure of your international size or dealing with high insteps? Connect directly with our shoe fit specialist for foot measurements analysis, personalized width calibration, and complimentary courier size exchanges.
+              </p>
+              <div class="space-y-2 mb-6 pt-4 border-t border-neutral-800/80 text-[11px] text-neutral-300 font-light">
+                <div class="flex items-center gap-2"><span class="text-brand-gold">✓</span> Virtual millimeter measurement review</div>
+                <div class="flex items-center gap-2"><span class="text-brand-gold">✓</span> Insole &amp; tongue pad micro-adjustments</div>
+                <div class="flex items-center gap-2"><span class="text-brand-gold">✓</span> Free door-to-door size exchange within 14 days</div>
+                <div class="flex items-center gap-2"><span class="text-brand-gold">✓</span> Lifetime shoe care recommendations</div>
+              </div>
+            </div>
+            <a href="https://wa.me/917895499065?text=Hello%20Milanworld%20Atelier,%20I%20would%20like%20to%20request%20a%20White-Glove%20Sizing%20&%20Fit%20consultation." target="_blank" class="w-full py-3 px-4 bg-neutral-900 hover:bg-brand-gold text-white hover:text-black text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 border border-neutral-700 hover:border-brand-gold transition-all duration-300">
+              <span>Chat With Fit Concierge →</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Cordwainer Hotline Banner -->
+        <div class="mt-12 bg-neutral-900/90 border border-neutral-800 p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div class="space-y-1 text-center sm:text-left">
+            <h4 class="font-serif text-lg uppercase tracking-wider font-semibold text-white">
+              Have a pair requiring custom repair or consultation?
+            </h4>
+            <p class="text-xs text-neutral-400 font-light">
+              Send high-resolution photos of your shoes to our master shoemaker on WhatsApp for an immediate assessment.
+            </p>
+          </div>
+          <a href="https://wa.me/917895499065?text=Hello%20Milanworld%20Atelier,%20I%20have%20a%20footwear%20care/repair%20inquiry." target="_blank" class="bg-brand-gold hover:bg-white text-black text-xs font-semibold uppercase tracking-widest px-6 py-3 transition-colors flex items-center gap-2 shrink-0">
+            <span>WhatsApp Master Cordwainer</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- END: AtelierServices -->
+
     <!-- BEGIN: BrandValuePillars -->
     <section class="bg-brand-black text-white py-10 px-6 border-y border-neutral-800" data-purpose="brand-pillars">
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 max-w-7xl mx-auto">
@@ -595,16 +760,16 @@
             <li><a class="hover:text-white transition-colors" href="#catalog">Goodyear Oxfords</a></li>
             <li><a class="hover:text-white transition-colors" href="#catalog">Tuscan Chelseas &amp; Boots</a></li>
             <li><a class="hover:text-white transition-colors" href="#catalog">Luxury Court Trainers</a></li>
-            <li><a class="hover:text-white transition-colors" href="#catalog">Resoling Atelier Service</a></li>
+            <li><a class="hover:text-white transition-colors text-brand-gold font-medium" href="#services">Atelier Services Menu →</a></li>
           </ul>
         </div>
         <div>
           <h5 class="text-white text-[11px] font-semibold uppercase tracking-widest mb-3">Shoemaker Concierge</h5>
           <ul class="space-y-2 text-[11px]">
-            <li><a class="hover:text-white transition-colors" href="#">Complimentary Size Exchanges</a></li>
-            <li><a class="hover:text-white transition-colors" href="#">International Shoe Size Matrix</a></li>
-            <li><a class="hover:text-white transition-colors" href="#">Saphir Médaille d'Or Care</a></li>
-            <li><a class="hover:text-white transition-colors" href="#">Lifetime Resoling Guarantee</a></li>
+            <li><a class="hover:text-white transition-colors" href="#services">Resoling &amp; Recrafting</a></li>
+            <li><a class="hover:text-white transition-colors" href="#services">Patina &amp; Mirror Glaçage</a></li>
+            <li><a class="hover:text-white transition-colors" href="#services">Su Misura Bespoke Lasts</a></li>
+            <li><a class="hover:text-white transition-colors" href="#services">Complimentary Size Exchanges</a></li>
             <li><a class="hover:text-white transition-colors" href="https://wa.me/917895499065">Contact Master Cordwainer</a></li>
           </ul>
         </div>
